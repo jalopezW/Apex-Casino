@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom"
+import GameHeader from "./GameHeader"
 
 export default function Slots() {
 
     return (
         <>
-            <h1>Slots</h1>
-            <button>
-            <Link to="/">Home</Link>
-            </button>
+            <GameHeader title ="Slots" />
         </>
     )
 

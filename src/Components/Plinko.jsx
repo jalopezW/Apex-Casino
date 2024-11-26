@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom"
+import GameHeader from "./GameHeader"
 
 export default function Plinko() {
 
     return (
         <>
-            <h1>Plinko</h1>
-            <button>
-            <Link to="/">Home</Link>
-            </button>
+            <GameHeader title ="Plinko" />
         </>
     )
 

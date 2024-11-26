@@ -1,13 +1,10 @@
-import { Link } from "react-router-dom"
+import GameHeader from "./GameHeader"
 
 export default function Roulette() {
 
     return (
         <>
-            <h1>Roulette</h1>
-            <button>
-            <Link to="/">Home</Link>
-            </button>
+            <GameHeader title ="Roulette" />
         </>
     )
 
