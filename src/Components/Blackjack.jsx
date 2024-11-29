@@ -76,10 +76,10 @@ export default function Blackjack() {
         )
     }
 
-    useEffect (() => {setPlayerScore(playerCards.map(getScore).reduce((a, b) => a + b,0))}, [playerCards])
-    useEffect (() => {setDealerScore(dealerCards.map(getScore).reduce((a, b) => a + b,0))}, [dealerCards])
+    useEffect (() => {() => setPlayerScore(playerCards.map(getScore).reduce((a, b) => a + b,0))}, [playerCards])
+    useEffect (() => {() => setDealerScore(dealerCards.map(getScore).reduce((a, b) => a + b,0))}, [dealerCards])
     useEffect (() => {playerScore > 21 ? (setLose(true)) : (null)}, [playerScore])
-    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (endGame()): (null)))}, [dealerScore])
+    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (() => addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (() => endGame()): (null)))}, [dealerScore])
 
     function getScore(card){
         const value = card.value
