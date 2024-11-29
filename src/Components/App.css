@@ -15,6 +15,23 @@ header {
   top: 0;
   left: 0;
 }
+
+#bet {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+#betOutput{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#playerCards, #dealerCards{
+  display: flex;
+  flex-direction: row;
+}
 /*
 .logo {
   height: 6em;
