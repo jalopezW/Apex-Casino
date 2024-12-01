@@ -17,17 +17,17 @@ export default function BetPlacer({bet,flag}) {
     return (<footer>
     
     <div id="bet">
-    <img onClick={()=> updateBet(1)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(1)} src={"/images/White.png"} width={100} height={100} />
     
-    <img onClick={()=> updateBet(5)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(5)} src={"/images/Red.png"} width={100} height={100} />
     
-    <img onClick={()=> updateBet(25)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(25)} src={"/images/Green.png"} width={100} height={100} />
     
-    <img onClick={()=> updateBet(100)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(100)} src={"/images/Black.png"} width={100} height={100} />
     
-    <img onClick={()=> updateBet(500)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(500)} src={"/images/Purple.png"} width={100} height={100} />
     
-    <img onClick={()=> updateBet(1000)} src="https://brand.lmu.edu/media/wnmd/brand/identitystandards/marks-ceremonial/lmu-ceremonial-mark.png" width={100} height={100} />
+    <img onClick={()=> updateBet(1000)} src={"/images/Orange.png"} width={100} height={100} />
     
     <p> $1 </p>
     <p> $5 </p>
