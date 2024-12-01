@@ -76,21 +76,30 @@ export default function Blackjack() {
         )
     }
 
-    useEffect (() => {() => setPlayerScore(playerCards.map(getScore).reduce((a, b) => a + b,0))}, [playerCards])
-    useEffect (() => {() => setDealerScore(dealerCards.map(getScore).reduce((a, b) => a + b,0))}, [dealerCards])
+    useEffect (() => {setPlayerScore(getScore(playerCards))}, [playerCards]) // 
+    useEffect (() => {setDealerScore(getScore(dealerCards))}, [dealerCards])
     useEffect (() => {playerScore > 21 ? (setLose(true)) : (null)}, [playerScore])
-    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (() => addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (() => endGame()): (null)))}, [dealerScore])
+    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (() => addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (endGame()): (null)))}, [dealerScore])
 
-    function getScore(card){
+    function getCardScore(card){
         const value = card.value
         if (value === "ACE"){
-            // fix
-            return 1
+            return 11
         } else if (value === "JACK" || value === "QUEEN" || value === "KING") {
             return 10
         } else {
             return Number(value)
         }
+    }
+
+    function getScore(cards){
+        var preScore = cards.map(getCardScore).reduce((a, b) => a + b,0)
+        const Aces = cards.filter(card => card.value === "ACE").length
+
+        if (preScore > 21) {
+            preScore = preScore - Aces*10
+        }
+        return preScore
     }
 
     return (
