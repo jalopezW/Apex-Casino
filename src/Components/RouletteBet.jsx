@@ -6,8 +6,6 @@ export default function RouletteBet({betList , setBetList}){
     const [currentBet, setCurrrentBet] = useState("")
     const [betValue, setBetValue] = useState(0)
 
-    const [tempBet, settempBet] = useState(0)
-
     function updateBet(toAdd){
         var tempBetList = betList
         
@@ -25,11 +23,6 @@ export default function RouletteBet({betList , setBetList}){
         tempBetList.delete(currentBet)
 
         setBetList(tempBetList)
-    }
-
-    function endbetting(){
-        {bet(tempBet)}
-        {flag()}
     }
 
     useEffect(() => {setBetValue(betList.get(currentBet))} ,[betList,currentBet])
