@@ -31,6 +31,8 @@ export default function Home() {
                 </div>
             </div>
 
+{/* VERY IMPORTANT CHANGE THE HOME PAGE SO THAT IT SHOW THE SIGNED IN PLAYER'S CURRENT SCORE11111111111!!!!!! */}
+
             {/* Game Buttons Section */}
             <div className="game-buttons">
                 <button>

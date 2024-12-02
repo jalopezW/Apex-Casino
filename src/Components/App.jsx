@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuthentication } from '../Services/authService'
-import { auth } from "../firebaseConfig"
+import { auth } from "../Services/firebaseConfig.js"
 import { newUser } from '../Services/scoreService';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home"

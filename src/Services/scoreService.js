@@ -1,4 +1,4 @@
-import { auth } from "../firebaseConfig"
+import { auth } from "../Services/firebaseConfig.js"
 import { loggedInUserDisplayName, loggedInUserID } from "./authService"
 import { collection, getDoc } from "firebase/firestore";
 

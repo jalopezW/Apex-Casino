@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth"
-import { auth } from "../firebaseConfig"
+import { auth } from "../Services/firebaseConfig.js"
 import { newUser } from "./scoreService"
 
 export function login() {
