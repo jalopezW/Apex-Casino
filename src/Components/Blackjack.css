@@ -1,0 +1,41 @@
+#blackjack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#table {
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    width: 60vw;
+    align-items: center;
+    height: 80vh;
+}
+
+#middle {
+    margin-top: 400px;
+    display: flex;
+    flex-direction: row;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    justify-content: center;
+    height: 80vh;
+}
+
+#table img {
+    padding: 20px;
+}
+
+#bottom {
+    margin-top: 50px;
+}
+
+#playerCards, #dealerCards{
+    display: flex;
+    flex-direction: row;
+  }

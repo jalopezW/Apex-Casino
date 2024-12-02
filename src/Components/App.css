@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #2a2a2a;
 }
 
 header {
@@ -20,6 +21,7 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  padding: 0px;
 }
 
 #betOutput{
@@ -28,10 +30,7 @@ header {
   justify-content: space-around;
 }
 
-#playerCards, #dealerCards{
-  display: flex;
-  flex-direction: row;
-}
+
 
 .top{
   transform: rotate(-90deg) translateX(-100%);
