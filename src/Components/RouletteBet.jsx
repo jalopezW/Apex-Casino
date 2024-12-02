@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./Roulette.css"
 
 
 export default function RouletteBet({betList , setBetList}){
