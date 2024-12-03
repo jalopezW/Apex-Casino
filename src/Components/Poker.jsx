@@ -23,24 +23,25 @@ export default function Poker() {
     }
 
     async function startGame() {
-        let deck = "";
-        let pCards = [];
-        let bCards = [];
-
-        await getDeck().then((id) => (deck = id));
-        await getCard(deck).then((card) => (pCards = [...pCards, ...card]));
-        await getCard(deck).then((card) => (pCards = [...pCards, ...card]));
-
-        for (let i = 0; i < 3; i++) {
-            let botHand = [];
-            await getCard(deck).then((card) => (botHand = [...botHand, ...card]));
-            await getCard(deck).then((card) => (botHand = [...botHand, ...card]));
-            bCards.push(botHand);
-        }
-
-        setCurrentDeck(deck);
-        setPlayerCards(pCards);
-        setBotCards(bCards);
+        //const deck = await getDeck()
+        //setCurrentDeck(await getDeck())
+        var deck = ""
+        var pCards = []
+        var dCards= []
+        await getDeck().then((id) => deck = id)
+        await getCard(deck).then((card)=> pCards = [...pCards, ...card])
+        await getCard(deck).then((card)=> pCards = [...pCards, ...card])
+        await getCard(deck).then((card)=> dCards = [...dCards, ...card])
+        await getCard(deck).then((card)=> dCards = [...dCards, ...card])
+        //console.log(currentDeck)
+        //addCard("player")
+        //setPlayerCards([await getCard(currentDeck), await getCard(currentDeck)])
+        //setDealerCards([await getCard(currentDeck), await getCard(currentDeck)])
+        //console.log(playerCards)
+        //console.log(dealerCards)
+        setCurrentDeck(deck)
+        setPlayerCards(pCards)
+        setDealerCards(dCards)
     }
 
     function calculateScore(hand) {
@@ -54,18 +55,17 @@ export default function Poker() {
             "8": 8,
             "9": 9,
             "10": 10,
-            JACK: 11,
-            QUEEN: 12,
-            KING: 13,
-            ACE: 14,
+            "JACK": 11,
+            "QUEEN": 12,
+            "KING": 13,
+            "ACE": 14,
         };
 
-        return hand.reduce((total, card) => total + values[card.value], 0);
     }
 
     function endGame() {
         const playerTotal = calculateScore(playerCards);
-        const botTotals = botCards.map((hand) => calculateScore(hand));
+        const botTotals = "nothing for now :)";
 
         setPlayerScore(playerTotal);
         setBotScores(botTotals);
@@ -89,34 +89,9 @@ export default function Poker() {
             {betting ? (
                 <BetPlacer bet={setBet} flag={() => bettingFlag()} />
             ) : (
-                <>
-                    {drawing ? (
-                        <>
-                            <div id="playerCards">
-                                <h3>Player's Hand:</h3>
-                                {playerCards.map((card) => (
-                                    <img key={card.code} src={card.image} alt={card.code} />
-                                ))}
-                            </div>
-                            <div id="botCards">
-                                {botCards.map((hand, index) => (
-                                    <div key={index}>
-                                        <h3>Bot {index + 1}:</h3>
-                                        {hand.map((card) => (
-                                            <img key={card.code} src={card.image} alt={card.code} />
-                                        ))}
-                                    </div>
-                                ))}
-                            </div>
-                            <button onClick={endGame}>Reveal Results</button>
-                        </>
-                    ) : (
                         <div id="results">
-                            <h3>Final Results:</h3>
                             <p>Player's Score: {playerScore}</p>
-                            {botScores.map((score, index) => (
-                                <p key={index}>Bot {index + 1} Score: {score}</p>
-                            ))}
+
                             {win && <p>You Win!</p>}
                             {lose && <p>You Lose!</p>}
                             {tie && <p>It's a Tie!</p>}
@@ -124,7 +99,7 @@ export default function Poker() {
                         </div>
                     )}
                 </>
-            )}
-        </>
-    );
-}
+            )};
+    
+
+
