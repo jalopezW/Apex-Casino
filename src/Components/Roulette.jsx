@@ -2,7 +2,7 @@ import GameHeader from "./GameHeader"
 import RouletteBet from "./RouletteBet"
 import { useEffect, useState } from "react"
 import "./Roulette.css"
-import { Wheel } from 'react-custom-roulette'
+import { Wheel } from "react-custom-roulette"
 
 export default function Roulette() {
     

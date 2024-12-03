@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "custom": "^0.0.0",
     "firebase": "^11.0.2",
     "react": "^18.3.1",
     "react-custom-roulette": "^1.4.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "roulette": "^0.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

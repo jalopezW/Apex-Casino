@@ -1,38 +1,50 @@
-import GameHeader from "./GameHeader"
-import { useEffect, useState } from "react"
-import BetPlacer from "./BetPlacer"
+import GameHeader from "./GameHeader";
+import { useEffect, useState } from "react";
+import { getDeck, getCard } from "../Services/cardService";
+import BetPlacer from "./PokerBetPlacer.jsx";
 
 export default function Poker() {
-    const [betting, setBetting] = useState(true)
-    const [bet, setBet] = useState(0)
-    const [currentDeck, setCurrentDeck] = useState("")
-    const [playerCards, setPlayerCards] = useState([])
-    const [dealerCards, setDealerCards] = useState([])
-    const [drawing, setDrawing] = useState(false)
-    const [playerScore, setPlayerScore] = useState(0)
-    const [dealerScore, setDealerScore] = useState(0)
-    const [lose, setLose] = useState(false)
-    const [win, setWin] = useState(false)
-    const [tie, setTie] = useState(false)
+    const [betting, setBetting] = useState(true);
+    const [bet, setBet] = useState(0);
+    const [currentDeck, setCurrentDeck] = useState("");
+    const [playerCards, setPlayerCards] = useState([]);
+    const [botCards, setBotCards] = useState([]);
+    const [drawing, setDrawing] = useState(false);
+    const [playerScore, setPlayerScore] = useState(0);
+    const [botScores, setBotScores] = useState([]);
+    const [lose, setLose] = useState(false);
+    const [win, setWin] = useState(false);
+    const [tie, setTie] = useState(false);
 
-    const [botCards, setBotCards] = useState([])
-    const [botScores, setBotScores] = useState(0)
-    const [deckID, setDeckID] = ("")
-
-
-    async function starterDeck() {
-    }
-
-    async function dealOutCards() {
-        
-        setPlayerCards();
-        setBotCards();
+    async function bettingFlag() {
         setBetting(false);
+        await startGame();
         setDrawing(true);
     }
 
-    function scoringCalculator(hand) {
-        const valuesInPriority = {
+    async function startGame() {
+        let deck = "";
+        let pCards = [];
+        let bCards = [];
+
+        await getDeck().then((id) => (deck = id));
+        await getCard(deck).then((card) => (pCards = [...pCards, ...card]));
+        await getCard(deck).then((card) => (pCards = [...pCards, ...card]));
+
+        for (let i = 0; i < 3; i++) {
+            let botHand = [];
+            await getCard(deck).then((card) => (botHand = [...botHand, ...card]));
+            await getCard(deck).then((card) => (botHand = [...botHand, ...card]));
+            bCards.push(botHand);
+        }
+
+        setCurrentDeck(deck);
+        setPlayerCards(pCards);
+        setBotCards(bCards);
+    }
+
+    function calculateScore(hand) {
+        const values = {
             "2": 2,
             "3": 3,
             "4": 4,
@@ -42,59 +54,77 @@ export default function Poker() {
             "8": 8,
             "9": 9,
             "10": 10,
-            "JACK": 11,
-            "QUEEN": 12,
-            "KING": 13,
-            "ACE": 14,};
-// doesn't do anything yet
+            JACK: 11,
+            QUEEN: 12,
+            KING: 13,
+            ACE: 14,
+        };
+
+        return hand.reduce((total, card) => total + values[card.value], 0);
     }
 
-    function gameOutcome() {
-        const playerTotalScore = scoringCalculator(playerCards);
-        const botsTotalScores = scoringCalculator(botCards);
-        setPlayerScore(playerTotalScore);
-        setBotScores(botsTotalScores);
+    function endGame() {
+        const playerTotal = calculateScore(playerCards);
+        const botTotals = botCards.map((hand) => calculateScore(hand));
 
-        const largestBotScore = Math.max(...botsTotalScores);
-        if (playerTotalScore > largestBotScore){
+        setPlayerScore(playerTotal);
+        setBotScores(botTotals);
+
+        const maxBotScore = Math.max(...botTotals);
+
+        if (playerTotal > maxBotScore) {
             setWin(true);
-
-        } else if (playerTotalScore == largestBotScore) {
+        } else if (playerTotal === maxBotScore) {
             setTie(true);
         } else {
             setLose(true);
         }
+
         setDrawing(false);
-    }
-
-    function bettingAmount(event) {
-        const value = parseInt(event.target.value, 10);
-        if (value >= 0) {
-            setBet(value);
-
-        }
-    useEffect(() => {starterDeck(); })
     }
 
     return (
         <>
-            <GameHeader title ="Poker" />
-            {betting && (
-                <div>
-                    <h1>How Much Do You Want to Bet? </h1>
-                    <input id="betInputField" type="number" placeholder="Enter Amount" onChange={bettingAmount}/>
-                    <button onClick={dealOutCards} disabled={bet === 0 }>Deal Out Cards</button>
-                </div>
-                
+            <GameHeader title="Poker" />
+            {betting ? (
+                <BetPlacer bet={setBet} flag={() => bettingFlag()} />
+            ) : (
+                <>
+                    {drawing ? (
+                        <>
+                            <div id="playerCards">
+                                <h3>Player's Hand:</h3>
+                                {playerCards.map((card) => (
+                                    <img key={card.code} src={card.image} alt={card.code} />
+                                ))}
+                            </div>
+                            <div id="botCards">
+                                {botCards.map((hand, index) => (
+                                    <div key={index}>
+                                        <h3>Bot {index + 1}:</h3>
+                                        {hand.map((card) => (
+                                            <img key={card.code} src={card.image} alt={card.code} />
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <button onClick={endGame}>Reveal Results</button>
+                        </>
+                    ) : (
+                        <div id="results">
+                            <h3>Final Results:</h3>
+                            <p>Player's Score: {playerScore}</p>
+                            {botScores.map((score, index) => (
+                                <p key={index}>Bot {index + 1} Score: {score}</p>
+                            ))}
+                            {win && <p>You Win!</p>}
+                            {lose && <p>You Lose!</p>}
+                            {tie && <p>It's a Tie!</p>}
+                            <button onClick={() => window.location.reload()}>Play Again</button>
+                        </div>
+                    )}
+                </>
             )}
-            {drawing && (
-                <div>
-                    <h2>Player's Cards:</h2>
-
-                    <button onClick={gameOutcome}>Finish Game Button Test</button>
-                </div>
-            )}
-
         </>
     );
 }

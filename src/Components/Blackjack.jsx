@@ -2,7 +2,6 @@ import GameHeader from "./GameHeader"
 import { useEffect, useState } from "react"
 import { getDeck, getCard } from "../Services/cardService"
 import BetPlacer from "./BetPlacer"
-import "./Blackjack.css"
 
 export default function Blackjack() {
 
@@ -21,12 +20,14 @@ export default function Blackjack() {
 
     async function bettingFlag(){
         //link to database
-        await startBehavior()
         setBetting(false)
+        await startBehavior()
         setDrawing(true)
     }
 
     async function startBehavior(){
+        //const deck = await getDeck()
+        //setCurrentDeck(await getDeck())
         var deck = ""
         var pCards = []
         var dCards= []
@@ -35,6 +36,12 @@ export default function Blackjack() {
         await getCard(deck).then((card)=> pCards = [...pCards, ...card])
         await getCard(deck).then((card)=> dCards = [...dCards, ...card])
         await getCard(deck).then((card)=> dCards = [...dCards, ...card])
+        //console.log(currentDeck)
+        //addCard("player")
+        //setPlayerCards([await getCard(currentDeck), await getCard(currentDeck)])
+        //setDealerCards([await getCard(currentDeck), await getCard(currentDeck)])
+        //console.log(playerCards)
+        //console.log(dealerCards)
         setCurrentDeck(deck)
         setPlayerCards(pCards)
         setDealerCards(dCards)
@@ -46,6 +53,8 @@ export default function Blackjack() {
         ) : (
             await getCard(currentDeck).then((card)=> setDealerCards([...dealerCards, ...card]))
         )
+
+
     }
 
     function dealerTurn(){
@@ -67,10 +76,16 @@ export default function Blackjack() {
         )
     }
 
-    function getCardScore(card){
+    useEffect (() => {() => setPlayerScore(playerCards.map(getScore).reduce((a, b) => a + b,0))}, [playerCards])
+    useEffect (() => {() => setDealerScore(dealerCards.map(getScore).reduce((a, b) => a + b,0))}, [dealerCards])
+    useEffect (() => {playerScore > 21 ? (setLose(true)) : (null)}, [playerScore])
+    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (() => addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (() => endGame()): (null)))}, [dealerScore])
+
+    function getScore(card){
         const value = card.value
         if (value === "ACE"){
-            return 11
+            // fix
+            return 1
         } else if (value === "JACK" || value === "QUEEN" || value === "KING") {
             return 10
         } else {
@@ -78,58 +93,35 @@ export default function Blackjack() {
         }
     }
 
-    function getScore(cards){
-        var preScore = cards.map(getCardScore).reduce((a, b) => a + b,0)
-        const aces = cards.filter(card => card.value === "ACE").length
-
-        if (preScore > 21) {
-            preScore = preScore - aces*10
-        }
-        return preScore
-    }
-
-    function reset(){
-        setBetting(true)
-        setBet(0)
-        setCurrentDeck("")
-        setPlayerCards([])
-        setDealerCards([])
-        setDrawing(false)
-        setPlayerScore(0)
-        setDealerScore(0)
-        setLose(false)
-        setWin(false)
-        setTie(false)
-    }
-
-    useEffect (() => {setPlayerScore(getScore(playerCards))}, [playerCards]) 
-    useEffect (() => {setDealerScore(getScore(dealerCards))}, [dealerCards])
-    useEffect (() => {playerScore > 21 ? (setLose(true)) : (null)}, [playerScore])
-    useEffect (() => {dealerScore > 21 ? (setWin(true)) : ( (!drawing && dealerScore < 17) ? (() => addCard("dealer")) : ((!drawing && 17 <= dealerScore <= 21) ? (endGame()): (null)))}, [dealerScore])
-
     return (
-        <div id="blackjack">
-            
+        <>
             <GameHeader title ="Blackjack" />
-            
-            <div id="middle">
+            {betting ?(
+                <BetPlacer bet={setBet} flag={() => bettingFlag()}/>
 
-            <div id="table">
-                {!betting ? (
-                <div>
-                    <div id="dealerCards">
+                // <form onSubmit={placeBet}>
+                // <h1>Place your bet: </h1>
+                // <input type ="number" onChange={(e) => setBet(e.target.value)}/>
+                // </form>
+            ): (lose === win && win === tie) ? (<> 
+
+                <div id="dealerCards">
                     {drawing ? (<>
+                    <p>dealer:</p>
                     <img src={dealerCards[0].image} />
                     <img src='https://deckofcardsapi.com/static/img/back.png' />
                     </>):(<>
+                    <p>dealer: {dealerScore}</p>
                     {dealerCards && dealerCards.map((card) => (
                         <div key={card.code}>
                         <img src={card.image} />
                         </div>))
                     }
-                    </>)}    
-                    </div>
+                    </>)}
+                    
+                </div>
                 <div id="playerCards">
+                    <p>player: {playerScore}</p>
                     {playerCards && playerCards.map((card) => (
                         <div key={card.code}>
                         <img src={card.image} />
@@ -137,43 +129,23 @@ export default function Blackjack() {
                     }
                 </div>
                 {drawing ? (<>
-                    <div>
                     <button onClick={() => addCard("player")}>hit</button>
                     <button onClick={() => dealerTurn()}>stand</button>
-                    </div>
-                </>) : ( <> </>)}
-                </div>) : (<></>)}
-            </div>
+                </>) : ( <> </>
 
-            <div id="results">
-            {betting ? (<></>) : (
-                <div>
-                {drawing ? (<p>???</p>) : (<p>{dealerScore}</p>)}
-                <p>vs</p>
-                <p>{playerScore}</p>
-                {!(lose === win && win === tie) ? (<button onClick={() => reset()}>Play Again</button>) : (<></>)}
-                </div>
-            )}
-            </div>
-            
-            </div>
-            
-            <div id="bottom">
-                {betting ?(
-                    <BetPlacer bet={setBet} flag={() => bettingFlag()}/>
-                ) : (lose === win && win === tie) ? (
-                    <h2>Current Bet: ${bet}</h2>
-                ) : (
-                    lose ? (
-                        <p>You Lost ${bet}</p>
-                    ) : win ?(
-                        <p>You Win ${bet}</p>
-                    ): (
-                        <p>Push!</p>
-                    )
                 )}
-            </div>
-
-        </div>
+            
+            </>) : ( <>
+                {lose ? (
+                    <p> you lose</p>
+                ) : win ?(
+                    <p> you win</p>
+                ): (
+                    <p> tie</p>
+                )}
+                <p>final player: {playerScore}</p>
+                <p>final dealer: {dealerScore}</p>
+            </>)}
+        </>
     )
 }
