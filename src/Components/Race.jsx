@@ -13,6 +13,7 @@ export default function Race() {
     };
 
     const [winners, setWinners] = useState(new Map())
+    const [winner, setWinner] = useState("")
     const [betList, setBetList] = useState(new Map())
     const [over, setOver] = useState(false)
     
@@ -30,8 +31,11 @@ export default function Race() {
         const copy = [...horses];
 
         while (result.size < 3) {
-            const randomIndex = Math.floor(Math.random() * copy.length);
-            const chosenElement = copy.splice(randomIndex, 1)[0];
+            const randomIndex = Math.floor(Math.random() * copy.length)
+            const chosenElement = copy.splice(randomIndex, 1)[0]
+            if (result.size == 0){
+                setWinner(chosenElement)
+            }
             result.set(chosenElement,result.size+1)
         }
         setOver(true)
@@ -78,7 +82,8 @@ export default function Race() {
 
 
 
-            {over ? (<button onClick={reset}>Reset</button>) : (<button onClick={getWinner}>Race!</button>)}
+            {over ? (<><button onClick={reset}>Reset</button> <p>{winner} wins!</p> </>) : (<button onClick={getWinner}>Race!</button>)}
+            
             
             <RaceBet betList={betList} setBetList={setBetList}/>
         </>
