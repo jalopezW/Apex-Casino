@@ -71,9 +71,9 @@ export default function Slots() {
         <>
             <GameHeader title ="Slots" />
             <button onClick={() => spin()}>Spin</button>
-            <img src={`/images/slot_${slot1}.png`} width={"50px"} height={"50px"}/>
-            <img src={`/images/slot_${slot2}.png`} width={"50px"} height={"50px"}/>
-            <img src={`/images/slot_${slot3}.png`} width={"50px"} height={"50px"}/>
+            <img src={`/images/slot_${slot1}.png`} width={"250px"} height={"250px"}/>
+            <img src={`/images/slot_${slot2}.png`} width={"250px"} height={"250px"}/>
+            <img src={`/images/slot_${slot3}.png`} width={"250px"} height={"250px"}/>
 
              <div id="bet">
                 <button onClick={() => setBet(bet-10)}>-</button>
