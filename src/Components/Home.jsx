@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <div className="container">
             {/* Header */}
-            <h1>Casino</h1>
+            <h1>Ace of Bluffs</h1>
 
             {/* Leaderboard and Player Score Side-by-Side */}
             <div className="stats-container">

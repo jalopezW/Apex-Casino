@@ -69,25 +69,36 @@ export default function Slots() {
 
     return (
         <>
-            <GameHeader title ="Slots" />
-            <button onClick={() => spin()}>Spin</button>
-            <img src={`/images/slot_${slot1}.png`} width={"250px"} height={"250px"}/>
-            <img src={`/images/slot_${slot2}.png`} width={"250px"} height={"250px"}/>
-            <img src={`/images/slot_${slot3}.png`} width={"250px"} height={"250px"}/>
+    <div className="slots-body">
+        <div className="slots-root">
+            <GameHeader title="Slots" />
+            <div className="slots-container">
+                <div className="slot-images">
+                    <img src={`/images/slot_${slot1}.png`} width={"50px"} height={"50px"} />
+                    <img src={`/images/slot_${slot2}.png`} width={"50px"} height={"50px"} />
+                    <img src={`/images/slot_${slot3}.png`} width={"50px"} height={"50px"} />
+                </div>
+                
+                <div className="slots-bet">
+                    <button className="slots-button" onClick={() => setBet(bet - 10)}>-</button>
+                    <p>{bet}</p>
+                    <button className="slots-button" onClick={() => setBet(bet + 10)}>+</button>
+                </div>
+                
+                <button className="slots-button spin-button" onClick={() => spin()}>Spin</button>
 
-             <div id="bet">
-                <button onClick={() => setBet(bet-10)}>-</button>
-                <p>{bet}</p>
-                <button onClick={() => setBet(bet+10)}>+</button>
-             </div>
-            {spinOver ? (
-                spinWin ? (
-                <p>You won: {bet}</p>
-                ) : (
-                <p>You lost: {bet}</p>
-                )
-            ): (<></>)}
-        </>
+                {spinOver ? (
+                    spinWin ? (
+                        <p className="slots-result">You won: {bet}</p>
+                    ) : (
+                        <p className="slots-result">You lost: {bet}</p>
+                    )
+                ) : (<></>)}
+            </div>
+        </div>
+    </div>
+</>
+
     )
 
 } 
