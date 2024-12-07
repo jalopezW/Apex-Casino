@@ -7,9 +7,19 @@ ApexCasino was created as a final project for the CMSI 2021 Web Application Deve
 ## How do I, the most beautiful user on the planet, access this highly sophisticated casino web app? Also, how should I, yet again the most beautiful user on the planet, use this?
 
 You can do so by running our ApexCasino web app [here!](https://casino-5bfa0.web.app/)
-**But wait!** In order to save your score you must log in with a google account that you own and you'll be well on your way to playing.
+**But wait!** In order to save your score you must log in with a google account that you own and you'll be well on your way to playing and scoring high on the leaderboard.
 
-## I want to contribute somehow in anyway I can to this project, so what should I do?
+## I want to tweak your Casino project so I can do my own things with it. So how should I do that?
 
-Wow thanks. You can do that by forking this project and installing the following on your CLI:
+Wow thanks. You can do that by forking or cloning this project and installing the following on your CLI:
 npm router, npm install react custom roulette, npm install react-player --save
+
+## Did you find an issue with ApexCasino?
+
+Let us know by clicking the issues tab up above and submitting the issue.
+
+## Known Issues (Work In Progress)
+
+## Like this project? Buy me a coffee!
+
+Just kidding use this to your own heart's content as this project is completely free and open source.
