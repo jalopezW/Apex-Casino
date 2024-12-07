@@ -1,4 +1,4 @@
-# ApexCasino - A Web App Project created using React and the Deck of Cards API
+# ApexCasino - A Web App Project created using Firestore, React, and the Deck of Cards API
 
 ## This webapp allows you, yes you, to gamble to your heart's content in multiple games including Blackjack, Craps, Poker, Horse Racing, Roulette, and Slots.
 
