@@ -4,20 +4,21 @@ import { SignIn, SignOut } from "./auth";
 import "./GameHeader.css";
 
 export default function GameHeader({ title, score }) {
-    const user = useAuthentication();
+  const user = useAuthentication();
 
-    return (
-        <header className="casino-header">
-            <div className="casino-header-content">
+  return (
+    <header className="casino-header">
+      <div className="casino-header-content">
+        <Link to="/">
+          <button className="nav-button">Home</button>
+        </Link>
 
-                <Link to="/"><button className="nav-button">Home</button></Link>
+        <h1 className="casino-header-title">{title}</h1>
 
-                <h1 className="casino-header-title">{title}</h1>
-
-                <div className="auth-actions">
-                    {!user ? <SignIn /> : <SignOut score={score} />}
-                </div>
-            </div>
-        </header>
-    );
+        <div className="auth-actions">
+          {!user ? <SignIn /> : <SignOut score={score} />}
+        </div>
+      </div>
+    </header>
+  );
 }

@@ -1,119 +1,113 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #2a2a2a;
-    color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #2a2a2a;
+  color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
 }
 
-/* Header Styling */
 h1 {
-    color: #ffcc00;
-    margin-bottom: 1rem;
+  color: #ffcc00;
+  margin-bottom: 1rem;
 }
 
-/* Main Container */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 800px;
 }
 
-/* Stats Container */
 .stats-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
-/* Leaderboard Section */
 .leaderboard {
-    background-color: #444;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1;
-    max-width: 50%;
+  background-color: #444;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 50%;
 }
 
 .leaderboard h2 {
-    margin: 0 0 0.5rem;
-    color: #ffcc00;
+  margin: 0 0 0.5rem;
+  color: #ffcc00;
 }
 
 .leaderboard ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
 .leaderboard li {
-    margin: 0.3rem 0;
+  margin: 0.3rem 0;
 }
 
-/* Player Score Section */
 .player-score {
-    background-color: #444;
-    padding: 1rem;
-    border-radius: 8px;
-    flex: 1;
-    max-width: 50%;
+  background-color: #444;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 50%;
 }
 
 .player-score h2 {
-    margin: 0 0 0.5rem;
-    color: #ffcc00;
+  margin: 0 0 0.5rem;
+  color: #ffcc00;
 }
 
 .player-score p {
-    margin: 0.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .player-score button {
-    padding: 0.5rem 1rem;
-    background-color: #ffcc00;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
 .player-score button:hover {
-    background-color: #e6b800;
+  background-color: #e6b800;
 }
 
-/* Game Buttons Section */
 .game-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
 .game-buttons button {
-    background-color: #444;
-    color: #f4f4f4;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    flex: 1 1 calc(30% - 10px);
-    max-width: 150px;
-    min-width: 100px;
+  background-color: #444;
+  color: #f4f4f4;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1 1 calc(30% - 10px);
+  max-width: 150px;
+  min-width: 100px;
 }
 
 .game-buttons button:hover {
-    background-color: #555;
+  background-color: #555;
 }
