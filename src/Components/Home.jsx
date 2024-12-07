@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { SignIn, SignOutButton } from "./auth";
+import ReactPlayer from 'react-player';
 
-export default function Home({score, user, leaderboard, position}) {
+export default function Home({score, user, leaderboard, position, updateScore}) {
     return (
         <div className="container">
             {/* Header */}
@@ -17,7 +18,7 @@ export default function Home({score, user, leaderboard, position}) {
                     <h2>Leaderboard</h2>
                     <ol>
                         {leaderboard.map((player, index) => (
-                            <li key={index}> {index + 1}: {player.Name} - {player.LionBucks} </li>
+                            <li key={index}> {index + 1}: {player.Name} - {player.LionBucks.toLocaleString()} </li>
                         ))}
                     </ol>
                 </div>
@@ -25,12 +26,20 @@ export default function Home({score, user, leaderboard, position}) {
                 {/* Player Score Section */}
                 <div className="player-score">
                     {user ? (
-                        <>
-                        <h2>Your Score</h2>
-                        <p>Position: <span>#{position}</span></p>
-                        <p>Score: <span>{score}</span></p>
-                        <SignOutButton />
-                        </>
+                        score > 0 ? (
+                            <>
+                            <h2>Your Score</h2>
+                            <p>Position: <span>#{position}</span></p>
+                            <p>Score: <span>{score.toLocaleString()}</span></p>
+                            <SignOutButton />
+                            </>
+                        ) : (
+                            <>
+                            <h2>Watch an Ad for 1,000 Lion Bucks!</h2>
+                            <ReactPlayer url='https://youtu.be/KT0U_JoxstU?si=kjD6wBt6iK2-HHhG' width="300px" height="250px" onEnded={() => updateScore(1000)}/>
+                            <SignOutButton />
+                            </>
+                        )
                     ) : (
                         <>
                         <h2>Sign in to see your stats!</h2>

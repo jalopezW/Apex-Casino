@@ -41,7 +41,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home score={score} user={user} leaderboard={leaderboard} position={position} />} />
+        <Route path="/" element={<Home score={score} user={user} leaderboard={leaderboard} position={position} updateScore={updateScore} />} />
         <Route path="/Blackjack" element={<Blackjack score={score} updateScore={updateScore} />} />
         <Route path="/Craps" element={<Craps score={score} updateScore={updateScore} />} />
         <Route path="/Poker" element={<Poker score={score} updateScore={updateScore} />} />

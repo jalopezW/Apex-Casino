@@ -8,7 +8,7 @@ export function SignIn() {
 export function SignOut({score}) {
   return (
     <div>
-      Hello, {loggedInUserDisplayName()}! You have {score} LionBucks   
+      Hello, {loggedInUserDisplayName()}! You have {score.toLocaleString()} LionBucks   
       <SignOutButton />
     </div>
   );
