@@ -20,6 +20,8 @@ Let us know by clicking the issues tab up above and submitting the issue.
 
 ## Known Issues (Work In Progress)
 
+Note to self/group: put issues here.
+
 ## Like this project? Buy me a coffee!
 
 Just kidding use this to your own heart's content as this project is completely free and open source.
