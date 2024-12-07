@@ -3,6 +3,7 @@ import {
   logout,
   loggedInUserDisplayName,
 } from "../Services/authService.js";
+import "./App.css";
 
 export function SignIn() {
   return <button onClick={login}>Sign In</button>;
@@ -10,9 +11,16 @@ export function SignIn() {
 
 export function SignOut({ score }) {
   return (
-    <div>
-      Hello, {loggedInUserDisplayName()}! You have {score.toLocaleString()}{" "}
-      LionBucks
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+      }}
+    >
+      <p style={{ marginRight: "10px" }}>
+        Hello, {loggedInUserDisplayName()}! You have {score.toLocaleString()}{" "}
+        LionBucks{" "}
+      </p>
       <SignOutButton />
     </div>
   );

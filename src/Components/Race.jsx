@@ -3,15 +3,9 @@ import { useEffect, useState } from "react";
 import RaceBet from "./RaceBet";
 import "./Race.css";
 
-export default function Race({ score }) {
+export default function Race({ score, updateScore }) {
   const horses = ["Red", "Blue", "Green"];
-  const [second, setSecond] = useState("");
   const [isMoved, setIsMoved] = useState(false);
-
-  const handleClick = () => {
-    setIsMoved(!isMoved);
-  };
-
   const [winners, setWinners] = useState(new Map());
   const [winner, setWinner] = useState("");
   const [betList, setBetList] = useState(new Map());
@@ -63,7 +57,7 @@ export default function Race({ score }) {
             transition: `transform ${placeToSeconds(
               winners.get("Red")
             )}s linear`,
-            transform: isMoved ? "translateX(500px)" : "translateX(0)",
+            transform: isMoved ? "translateX(800px)" : "translateX(0)",
           }}
         />
         <img
@@ -74,7 +68,7 @@ export default function Race({ score }) {
             transition: `transform ${placeToSeconds(
               winners.get("Blue")
             )}s linear`,
-            transform: isMoved ? "translateX(500px)" : "translateX(0)",
+            transform: isMoved ? "translateX(800px)" : "translateX(0)",
           }}
         />
         <img
@@ -85,17 +79,22 @@ export default function Race({ score }) {
             transition: `transform ${placeToSeconds(
               winners.get("Green")
             )}s linear`,
-            transform: isMoved ? "translateX(500px)" : "translateX(0)",
+            transform: isMoved ? "translateX(800px)" : "translateX(0)",
           }}
         />
       </div>
 
       {over ? (
         <>
-          <button onClick={reset}>Reset</button> <p>{winner} wins!</p>{" "}
+          <button id="reset-button" onClick={reset}>
+            Reset
+          </button>{" "}
+          <p>{winner} wins!</p>{" "}
         </>
       ) : (
-        <button onClick={getWinner}>Race!</button>
+        <button id="race-button" onClick={getWinner}>
+          Race!
+        </button>
       )}
 
       <RaceBet betList={betList} setBetList={setBetList} />

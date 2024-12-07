@@ -67,7 +67,7 @@ export async function incrementScore(amount) {
 export async function getTopFive() {
   const scoreRef = collection(db, "user_scores");
 
-  const q = query(scoreRef, orderBy("LionBucks"), limit(5));
+  const q = query(scoreRef, orderBy("LionBucks", "desc"), limit(5));
 
   const querySnapshot = await getDocs(q);
 

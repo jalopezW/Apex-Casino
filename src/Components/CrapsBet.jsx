@@ -7,46 +7,41 @@ export default function CrapsBet({ betList, setBetList }) {
   function updateBet(toAdd) {
     var tempBetList = betList;
 
-    betList.has(currentBet)
-      ? tempBetList.set(currentBet, betList.get(currentBet) + toAdd)
-      : tempBetList.set(currentBet, toAdd);
+    currentBet in betList
+      ? (tempBetList[currentBet] = tempBetList[currentBet] + toAdd)
+      : (tempBetList[currentBet] = toAdd);
     setBetList(tempBetList);
+    setBetValue(betList[currentBet]);
   }
 
   function clearEntry() {
     var tempBetList = betList;
 
-    tempBetList.delete(currentBet);
+    delete tempBetList.currentBet;
 
     setBetList(tempBetList);
   }
 
   useEffect(() => {
-    setBetValue(betList.get(currentBet));
-  }, [betList, currentBet]);
+    setBetValue(betList[currentBet]);
+  }, [currentBet]);
 
   return (
     <>
-      <button onClick={() => setCurrrentBet("Pass Line")}>Pass Line</button>
-      <button onClick={() => setCurrrentBet("Don't Pass Bar")}>
-        Don't Pass Bar
+      <button onClick={() => setCurrrentBet(7)}>5 to 1 Seven 5 to 1</button>
+      <button onClick={() => setCurrrentBet(6)}>10 to 1 6</button>
+      <button onClick={() => setCurrrentBet(10)}>8 to 1 10</button>
+      <button onClick={() => setCurrrentBet(8)}>10 to 1 8</button>
+      <button onClick={() => setCurrrentBet(4)}>8 to 1 4</button>
+      <button onClick={() => setCurrrentBet(3)}>16 to 1 3</button>
+      <button onClick={() => setCurrrentBet(2)}>31 to 1 2</button>
+      <button onClick={() => setCurrrentBet(12)}>31 to 1 12</button>
+      <button onClick={() => setCurrrentBet(11)}>16 to 1 11</button>
+      <button onClick={() => setCurrrentBet(11)}>16 to 1 11</button>
+      <button onClick={() => setCurrrentBet("Any")}>
+        8 to 1 Any Craps 8 to 1
       </button>
-      <button onClick={() => setCurrrentBet("Big")}>Big</button>
-      <button onClick={() => setCurrrentBet("Don't Pass Bar")}>
-        Don't Pass Bar
-      </button>
-      <button onClick={() => setCurrrentBet("Field")}>Field</button>
-      <button onClick={() => setCurrrentBet("Come")}>Come</button>
-      <button onClick={() => setCurrrentBet("Don't Come Bar")}>
-        Don't Come Bar
-      </button>
-      <button onClick={() => setCurrrentBet("4")}>4</button>
-      <button onClick={() => setCurrrentBet("5")}>5</button>
-      <button onClick={() => setCurrrentBet("6")}>6</button>
-      <button onClick={() => setCurrrentBet("8")}>8</button>
-      <button onClick={() => setCurrrentBet("9")}>9</button>
-      <button onClick={() => setCurrrentBet("10")}>10</button>
-      <button onClick={() => setCurrrentBet("11")}>11</button>
+
       <footer>
         <div id="bet">
           <img
@@ -101,10 +96,10 @@ export default function CrapsBet({ betList, setBetList }) {
 
         <div id="betOutput">
           <p>
-            Bet on {currentBet}: ${betValue}
+            Bet on {currentBet}: $ {currentBet in betList ? betValue : 0}
           </p>
           <button onClick={() => clearEntry()}>Clear</button>
-          <button onClick={() => setBetList(new Map())}>Clear All</button>
+          <button onClick={() => setBetList({})}>Clear All</button>
         </div>
       </footer>
     </>

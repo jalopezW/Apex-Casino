@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function RouletteBet({ betList, setBetList }) {
+export default function RaceBet({ betList, setBetList }) {
   const [currentBet, setCurrrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
 
@@ -27,13 +27,19 @@ export default function RouletteBet({ betList, setBetList }) {
 
   return (
     <>
-      <div class="zeros">
-        <button onClick={() => setCurrrentBet("Red")}>Red</button>
-        <button onClick={() => setCurrrentBet("Blue")}>Blue</button>
-        <button onClick={() => setCurrrentBet("Green")}>Green</button>
-      </div>
+      <div className="betting-section">
+        <div id="zeros">
+          <button id="red" onClick={() => setCurrrentBet("Red")}>
+            Red Rocket
+          </button>
+          <button id="blue" onClick={() => setCurrrentBet("Blue")}>
+            Blue Lightning
+          </button>
+          <button id="green" onClick={() => setCurrrentBet("Green")}>
+            Green Bean
+          </button>
+        </div>
 
-      <footer>
         <div id="bet">
           <img
             onClick={() => updateBet(1)}
@@ -77,22 +83,20 @@ export default function RouletteBet({ betList, setBetList }) {
             height={100}
           />
 
-          <p> $1 </p>
-          <p> $5 </p>
-          <p> $25 </p>
-          <p> $100 </p>
-          <p> $500 </p>
-          <p> $1000 </p>
-        </div>
+          <div> $1 </div>
+          <div> $5 </div>
+          <div> $25 </div>
+          <div> $100 </div>
+          <div> $500 </div>
+          <div> $1000 </div>
 
-        <div id="betOutput">
-          <p>
+          <div id="bet-on">
             Bet on {currentBet}: ${betValue}
-          </p>
-          <button onClick={() => clearEntry()}>Clear</button>
-          <button onClick={() => setBetList(new Map())}>Clear All</button>
+            <button onClick={() => clearEntry()}>Clear</button>
+            <button onClick={() => setBetList(new Map())}>Clear All</button>
+          </div>
         </div>
-      </footer>
+      </div>
     </>
   );
 }

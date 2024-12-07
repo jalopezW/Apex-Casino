@@ -1,4 +1,98 @@
 #horses {
   display: flex;
   flex-direction: column;
+  margin-top: 100px;
+}
+
+#race-button {
+  background-color: gold;
+  display: flex;
+  padding: 10px 10px;
+  align-items: center;
+  justify-self: center;
+  border-radius: 20px;
+  color: black;
+}
+
+#reset-button {
+  background-color: gold;
+  display: grid;
+  justify-self: center;
+  color: black;
+  border-radius: 20px;
+}
+
+#zeros {
+  display: grid;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-self: center;
+  gap: 15px;
+}
+
+#zeros button {
+  border-radius: 20px;
+  width: 200px;
+  height: 45px;
+}
+
+#red {
+  background-color: red;
+}
+
+#blue {
+  background-color: blue;
+}
+
+#green {
+  background-color: green;
+}
+
+.betting-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+#bet {
+  width: auto;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 110px 30px 80px;
+  padding: 8px;
+  gap: 8px;
+}
+
+#bet img {
+  display: block;
+}
+
+#betOutput {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 400px;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+#bet button {
+  color: white;
+  background-color: #1a1a1a;
+}
+
+#bet-on {
+  display: flex;
+  gap: 10px;
+  grid-column: 1 / 7;
+  justify-content: center;
+  font-weight: 900;
+  align-items: center;
+  text-align: center;
 }
