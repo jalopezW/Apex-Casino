@@ -1,18 +1,18 @@
-import BetPlacer from "./BetPlacer"
 import GameHeader from "./GameHeader"
 import { useEffect, useState } from "react"
 import "./Slots.css"
 
-export default function Slots() {
+export default function Slots({score, updateScore}) {
 
+    const scale_list = [2, 5, 10, 25, 50, 75, 100, 200, 500, 1000, 0]
     const [bet, setBet] = useState(0)
+    const [betResult, setBetResult] = useState(0)
     const [result, setResult] = useState([10,10,10])
     const [slot1, setSlot1] = useState(10)
     const [slot2, setSlot2] = useState(10)
     const [slot3, setSlot3] = useState(10)
-    const [spinOver, setSpinOver] = useState(false)
+    const [spinOver, setSpinOver] = useState(true)
     const [spinWin, setSpinWin] = useState(false)
-    const [scoreMult, setScoreMult] = useState(0)
     
     
     function sleep(ms) {
@@ -51,27 +51,25 @@ export default function Slots() {
 
         (result[0] === result[1] && result[1] === result[2]) ? (
             setSpinWin(true),
-            setScoreMult(result[0])
+            setBetResult(bet*scale_list[result[0]]),
+            updateScore(bet*scale_list[result[0]])
         ) : (
             setSpinWin(false),
-            setScoreMult(0)
+            setBetResult(bet),
+            updateScore(bet * -1)
         )
-        
     }
-
-    function endSpin(){
-        setResult([slot1,slot2,slot3])
-    }
- 
 
     useEffect(() => checkSpin(),[result])
-    useEffect(() => endSpin(),[spinOver])
+    useEffect(() => {spinOver ? (setResult([slot1,slot2,slot3])) : (null)}, [spinOver])
+
+    useEffect(() => {bet > score ? (setBet(score)) : (null)} ,[score])
 
     return (
         <>
     <div className="slots-body">
         <div className="slots-root">
-            <GameHeader title="Slots" />
+            <GameHeader title="Slots" score={score}/>
             <div className="slots-container">
                 <div className="slot-images">
                     <img src={`/images/slot_${slot1}.png`} width={"50px"} height={"50px"} />
@@ -79,21 +77,22 @@ export default function Slots() {
                     <img src={`/images/slot_${slot3}.png`} width={"50px"} height={"50px"} />
                 </div>
                 
+                {spinOver ? (
+                <>
                 <div className="slots-bet">
-                    <button className="slots-button" onClick={() => setBet(bet - 10)}>-</button>
+                    <button className="slots-button" onClick={() => bet >= 10 ?(setBet(bet - 10)) : (setBet(0))}>-</button>
                     <p>{bet}</p>
-                    <button className="slots-button" onClick={() => setBet(bet + 10)}>+</button>
+                    <button className="slots-button" onClick={() => bet < score ? (setBet(bet + 10)) : (setBet(score))}>+</button>
                 </div>
                 
-                <button className="slots-button spin-button" onClick={() => spin()}>Spin</button>
-
-                {spinOver ? (
-                    spinWin ? (
-                        <p className="slots-result">You won: {bet}</p>
-                    ) : (
-                        <p className="slots-result">You lost: {bet}</p>
-                    )
+                
+                {bet > 0 ? <button className="slots-button spin-button" onClick={() => spin()}>Spin</button> : <> </>}
+                </>
                 ) : (<></>)}
+
+                {spinOver && betResult != 0 ? (
+                        <p className="slots-result">You {spinWin ? "won" : "lost"}: {betResult}</p>
+                    ) : (<></>)}
             </div>
         </div>
     </div>

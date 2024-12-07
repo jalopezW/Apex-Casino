@@ -1,23 +1,21 @@
 import { useAuthentication } from "../Services/authService";
 import { Link } from "react-router-dom";
 import { SignIn, SignOut } from "./auth";
-import "./GameHeader.css"; // Ensure the CSS is imported
+import "./GameHeader.css";
 
-export default function GameHeader({ title }) {
+export default function GameHeader({ title, score }) {
     const user = useAuthentication();
 
     return (
         <header className="casino-header">
             <div className="casino-header-content">
 
-                <button className="nav-button">
-                    <Link to="/">Home</Link>
-                </button>
+                <Link to="/"><button className="nav-button">Home</button></Link>
 
                 <h1 className="casino-header-title">{title}</h1>
 
                 <div className="auth-actions">
-                    {!user ? <SignIn /> : <SignOut />}
+                    {!user ? <SignIn /> : <SignOut score={score} />}
                 </div>
             </div>
         </header>

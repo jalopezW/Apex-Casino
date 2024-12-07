@@ -1,17 +1,21 @@
 import './App.css'
 import { useState } from 'react'
 
-export default function BetPlacer({bet,flag}) {
+export default function BetPlacer({bet, flag, score}) {
 
     const [tempBet, settempBet] = useState(0)
 
     function updateBet(toAdd){
-        settempBet(tempBet+toAdd)
+        tempBet >= score ? (
+            settempBet(score)
+        ) : (
+            settempBet(tempBet+toAdd)
+        )
     }
 
     function endbetting(){
-        {bet(tempBet)}
-        {flag()}
+        bet(tempBet)
+        flag()
     }
 
     return (<footer>
@@ -40,7 +44,7 @@ export default function BetPlacer({bet,flag}) {
     <div id="betOutput">
     <p>Current Bet: ${tempBet}</p>
     <button onClick={()=> settempBet(0)}>Clear</button>
-    <button onClick={()=> endbetting()}>Done</button>
+    {tempBet != 0 ? <button onClick={()=> endbetting()}>Done</button> : <></>}
     </div>
 
 

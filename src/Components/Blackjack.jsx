@@ -4,7 +4,7 @@ import { getDeck, getCard } from "../Services/cardService";
 import BetPlacer from "./BetPlacer";
 import "./Blackjack.css";
 
-export default function Blackjack() {
+export default function Blackjack({score, updateScore}) {
     const [betting, setBetting] = useState(true);
     const [bet, setBet] = useState(0);
     const [currentDeck, setCurrentDeck] = useState("");
@@ -18,8 +18,6 @@ export default function Blackjack() {
     const [tie, setTie] = useState(false);
 
     async function bettingFlag() {
-        //link to database
-
         await startBehavior();
         setBetting(false);
         setDrawing(true);
@@ -59,9 +57,11 @@ export default function Blackjack() {
 
     function endGame(){
         playerScore > dealerScore ? (
-            setWin(true)
+            setWin(true),
+            updateScore(bet)
         ) : playerScore < dealerScore ? (
-            setLose(true)
+            setLose(true),
+            updateScore(bet * -1)
         ) : (
             setTie(true)
         )
@@ -112,7 +112,7 @@ export default function Blackjack() {
     // CHANGED
     return (
         <div id="blackjackGameContainer">
-            <GameHeader title="Blackjack" />
+            <GameHeader title="Blackjack" score={score}/>
             <div id="gameContent">
                 <div id="gameTable">
                     {!betting && (
@@ -160,7 +160,7 @@ export default function Blackjack() {
             </div>
             <div id="bettingSection">
                 {betting ? (
-                    <BetPlacer bet={setBet} flag={bettingFlag} />
+                    <BetPlacer bet={setBet} flag={bettingFlag} score ={score} />
                 ) : lose ? (
                     <p>You Lost ${bet}</p>
                 ) : win ? (

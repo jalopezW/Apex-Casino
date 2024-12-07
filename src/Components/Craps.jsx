@@ -2,7 +2,7 @@ import GameHeader from "./GameHeader"
 import { useEffect, useState } from "react"
 import CrapsBet from "./CrapsBet"
 
-export default function Craps() {
+export default function Craps({score}) {
 
     const [betList, setBetList] = useState(new Map())
     const [dice1, setDice1] = useState(1)
@@ -23,7 +23,7 @@ export default function Craps() {
 
     return (
         <>
-            <GameHeader title ="Craps" />
+            <GameHeader title ="Craps" score={score}/>
 
             <img src={rolling ? ("/images/rolling.gif") : (`/images/craps_${dice1}.png`)} width={"100px"} height={"100px"}/>
             <img src={rolling ? ("/images/rolling.gif") : (`/images/craps_${dice2}.png`)} width={"100px"} height={"100px"}/>

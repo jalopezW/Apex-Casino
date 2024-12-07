@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import RaceBet from "./RaceBet"
 import "./Race.css"
 
-export default function Race() {
+export default function Race({score}) {
     const horses = ["Red","Blue","Green"]
     const [second, setSecond] = useState("")
     const [isMoved, setIsMoved] = useState(false);
@@ -62,7 +62,7 @@ export default function Race() {
 
     return (
         <>
-            <GameHeader title ="Race" />
+            <GameHeader title ="Race" score={score}/>
             <div id="horses">
             <img src="/images/redHorse.png" width={"100px"} height={"100px"} style={{ 
             transition: `transform ${placeToSeconds(winners.get("Red"))}s linear`,

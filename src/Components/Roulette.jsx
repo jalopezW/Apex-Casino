@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import "./Roulette.css"
 import { Wheel } from "react-custom-roulette"
 
-export default function Roulette() {
+export default function Roulette({score}) {
     
     const possibilities = [{option: "0"},{option: "28"},{option: "9"},{option: "26"},{option: "30"},{option: "11"},{option: "7"},{option: "20"},{option: "32"},{option: "17"},{option: "5"},{option: "22"},{option: "34"},{option: "15"},{option: "3"},{option: "24"},{option: "36"},{option: "13"},{option: "1"},{option: "00"},{option: "27"},{option: "10"},{option: "25"},{option: "29"},{option: "12"},{option: "8"},{option: "19"},{option: "31"},{option: "18"},{option: "6"},{option: "21"},{option: "33"},{option: "16"},{option: "4"},{option: "23"},{option: "35"},{option: "14"},{option: "2"}]
     const red = ['1', '3', '5', '7', '9', '12', '14', '16', '18', '19', '21', '23', '25', '27', '30', '32', '34', '36']
@@ -70,7 +70,7 @@ export default function Roulette() {
 
     return (
         <div id="rbody">
-            <GameHeader title ="Roulette" />
+            <GameHeader title ="Roulette" score={score}/>
             
             <div id="main">
 
