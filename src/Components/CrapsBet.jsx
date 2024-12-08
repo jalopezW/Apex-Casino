@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export default function CrapsBet({ betList, setBetList }) {
   const [currentBet, setCurrrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
+  const [picked, setPicked] = useState(false);
 
   function updateBet(toAdd) {
     var tempBetList = betList;
@@ -22,26 +23,160 @@ export default function CrapsBet({ betList, setBetList }) {
   }
 
   useEffect(() => {
+    currentBet && setPicked(true);
     setBetValue(betList[currentBet] ? betList[currentBet] : 0);
+    setBetList({});
   }, [currentBet]);
 
   return (
-    <>
-      <button onClick={() => setCurrrentBet(7)}>5 to 1 Seven 5 to 1</button>
-      <button onClick={() => setCurrrentBet(6)}>10 to 1 6</button>
-      <button onClick={() => setCurrrentBet(10)}>8 to 1 10</button>
-      <button onClick={() => setCurrrentBet(8)}>10 to 1 8</button>
-      <button onClick={() => setCurrrentBet(4)}>8 to 1 4</button>
-      <button onClick={() => setCurrrentBet(3)}>16 to 1 3</button>
-      <button onClick={() => setCurrrentBet(2)}>31 to 1 2</button>
-      <button onClick={() => setCurrrentBet(12)}>31 to 1 12</button>
-      <button onClick={() => setCurrrentBet(11)}>16 to 1 11</button>
-      <button onClick={() => setCurrrentBet(11)}>16 to 1 11</button>
-      <button onClick={() => setCurrrentBet("Any")}>
-        8 to 1 Any Craps 8 to 1
-      </button>
+    <div id="craps-bet">
+      <div id="buttons">
+        <button
+          onClick={() => setCurrrentBet(7)}
+          className="full"
+          id={
+            picked ? (currentBet == 7 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <p>5 to 1 </p>
+          <p className="red">Seven </p>
+          <p>5 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(6)}
+          className="half"
+          id={
+            picked ? (currentBet == 6 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_3.png" width="25px" height="25px" />
+            <img src="/images/craps_3.png" width="25px" height="25px" />
+          </div>
+          <p>10 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(10)}
+          className="half"
+          id={
+            picked ? (currentBet == 10 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_5.png" width="25px" height="25px" />
+            <img src="/images/craps_5.png" width="25px" height="25px" />
+          </div>
+          <p>8 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(8)}
+          className="half"
+          id={
+            picked ? (currentBet == 8 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_4.png" width="25px" height="25px" />
+            <img src="/images/craps_4.png" width="25px" height="25px" />
+          </div>
+          <p>10 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(4)}
+          className="half"
+          id={
+            picked ? (currentBet == 4 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_2.png" width="25px" height="25px" />
+            <img src="/images/craps_2.png" width="25px" height="25px" />
+          </div>
+          <p>8 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(3)}
+          className="third"
+          id={
+            picked ? (currentBet == 3 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_2.png" width="25px" height="25px" />
+            <img src="/images/craps_1.png" width="25px" height="25px" />
+          </div>
+          <p>16 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(2)}
+          className="third"
+          id={
+            picked ? (currentBet == 2 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_1.png" width="25px" height="25px" />
+            <img src="/images/craps_1.png" width="25px" height="25px" />
+          </div>
+          <p>31 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(12)}
+          className="third"
+          id={
+            picked ? (currentBet == 12 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_6.png" width="25px" height="25px" />
+            <img src="/images/craps_6.png" width="25px" height="25px" />
+          </div>
+          <p>31 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(11)}
+          className="half"
+          id={
+            picked ? (currentBet == 11 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_6.png" width="25px" height="25px" />
+            <img src="/images/craps_5.png" width="25px" height="25px" />
+          </div>
+          <p>16 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet(11)}
+          className="half"
+          id={
+            picked ? (currentBet == 11 ? "selected" : "disabled ") : "selected"
+          }
+        >
+          <div id="button-images">
+            <img src="/images/craps_6.png" width="25px" height="25px" />
+            <img src="/images/craps_5.png" width="25px" height="25px" />
+          </div>
+          <p>16 to 1</p>
+        </button>
+        <button
+          onClick={() => setCurrrentBet("Any")}
+          className="full"
+          id={
+            picked
+              ? currentBet == "Any"
+                ? "selected"
+                : "disabled "
+              : "selected"
+          }
+        >
+          <p>8 to 1 </p>
+          <p className="red">Any Craps</p>
+          <p>8 to 1</p>
+        </button>
+      </div>
       {currentBet ? (
-        <footer>
+        <div id="bet-placer">
           <div id="bet">
             <img
               onClick={() => updateBet(1)}
@@ -95,15 +230,20 @@ export default function CrapsBet({ betList, setBetList }) {
 
           <div id="betOutput">
             <p>
-              Bet on {currentBet}: $ {currentBet in betList ? betValue : 0}
+              Bet on {currentBet}: ${currentBet in betList ? betValue : 0}
             </p>
-            <button onClick={() => clearEntry()}>Clear</button>
-            <button onClick={() => setBetList({})}>Clear All</button>
+            <button
+              onClick={() => {
+                setBetList({}), setBetValue(0);
+              }}
+            >
+              Clear
+            </button>
           </div>
-        </footer>
+        </div>
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 }

@@ -23,7 +23,7 @@ export default function RaceBet({ betList, setBetList }) {
   return (
     <>
       <div className="betting-section">
-        <div id="zeros">
+        <div id="colors">
           <button
             id={picked ? (currentBet == "Red" ? "red" : "disabled ") : "red"}
             onClick={() => setCurrrentBet("Red")}

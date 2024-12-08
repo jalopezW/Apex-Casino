@@ -15,19 +15,12 @@ export function SignOut({ score }) {
       style={{
         display: "flex",
         flexDirection: "row",
+        gap: "10px",
       }}
     >
-      <div
-        style={{
-          marginRight: "10px",
-          display: "flex",
-          flexDirection: "column",
-          fontSize: "10px",
-        }}
-      >
-        <p>Hello, {loggedInUserDisplayName()}!</p>
-        <p> You have {score.toLocaleString()} LionBucks </p>
-      </div>
+      <p>
+        {loggedInUserDisplayName()}: ${score.toLocaleString()}{" "}
+      </p>
       <SignOutButton />
     </div>
   );

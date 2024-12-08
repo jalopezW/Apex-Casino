@@ -113,7 +113,7 @@ export default function Blackjack({ score, updateScore }) {
 
   return (
     <div id="blackjackGameContainer">
-      <GameHeader title="Blackjack" score={score} />
+      <GameHeader title="🃏 Blackjack 🃏" score={score} />
       <div id="gameContent">
         <div id="gameTable">
           {!betting && (
@@ -152,21 +152,21 @@ export default function Blackjack({ score, updateScore }) {
         {!betting && (
           <div id="results">
             <div id="results-text">
-              <p
+              <h3
                 style={{
                   color: !drawing ? (lose ? "green" : "red") : "white",
                 }}
               >
                 {drawing ? "???" : dealerScore}
-              </p>
-              <p>vs</p>
-              <p
+              </h3>
+              <h3>vs</h3>
+              <h3
                 style={{
                   color: !drawing ? (win ? "green" : "red") : "white",
                 }}
               >
                 {playerScore}
-              </p>
+              </h3>
             </div>
             {(lose || win || tie) && (
               <button id="playAgainButton" onClick={() => reset()}>

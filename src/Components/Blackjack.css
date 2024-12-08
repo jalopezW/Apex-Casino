@@ -6,7 +6,7 @@
   color: white;
   min-height: 50vh;
   font-family: "Arial", sans-serif;
-  padding: 225px;
+  padding: 150px;
   gap: 0px;
 }
 
@@ -28,6 +28,7 @@
   flex-direction: column;
   background-color: #228b22;
   border-radius: 355px;
+  border: 10px solid #341c02;
   width: 80vw;
   align-items: center;
   justify-content: space-between;

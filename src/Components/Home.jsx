@@ -40,7 +40,7 @@ export default function Home({
                   Position: <span>#{position}</span>
                 </p>
                 <p>
-                  Score: <span>{score.toLocaleString()}</span>
+                  LionBucks: <span>${score.toLocaleString()}</span>
                 </p>
                 <SignOutButton />
               </>

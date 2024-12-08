@@ -16,7 +16,20 @@ export default function GameHeader({ title, score }) {
         <h1 className="casino-header-title">{title}</h1>
 
         <div className="auth-actions">
-          {!user ? <SignIn /> : <SignOut score={score} />}
+          {!user ? (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "10px",
+              }}
+            >
+              <p>Sign in to play!</p>
+              <SignIn />
+            </div>
+          ) : (
+            <SignOut score={score} />
+          )}
         </div>
       </div>
     </header>

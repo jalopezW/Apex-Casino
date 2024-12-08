@@ -23,6 +23,7 @@
   text-align: center;
   width: 800px;
   border-color: white;
+  height: 50vh;
 }
 
 .slots-button {
@@ -38,7 +39,6 @@
 
 .slots-button:hover {
   background-color: #555555;
-  margin-top: 20px;
 }
 
 .slots-bet {

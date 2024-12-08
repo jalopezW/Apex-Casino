@@ -59,7 +59,7 @@ export default function Race({ score, updateScore }) {
 
   return (
     <>
-      <GameHeader title="Race" score={score} />
+      <GameHeader title="🐎 Race 🐎" score={score} />
       <div id="horses">
         <img
           src="/images/redHorse.png"
@@ -91,17 +91,18 @@ export default function Race({ score, updateScore }) {
       </div>
 
       {over ? (
-        <>
+        <div id="over-text">
           <button id="reset-button" onClick={reset}>
-            Reset
+            Play Again
           </button>
           <p>{winner} wins!</p>
+
           {winner in betList ? (
             <p>You win ${betList[winner]}</p>
           ) : (
             <p>You lost ${Object.values(betList)[0]}</p>
           )}
-        </>
+        </div>
       ) : (
         Object.keys(betList).length > 0 && (
           <button id="race-button" onClick={getWinner}>

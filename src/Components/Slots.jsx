@@ -66,7 +66,7 @@ export default function Slots({ score, updateScore }) {
     <>
       <div className="slots-body">
         <div className="slots-root">
-          <GameHeader title="Slots" score={score} />
+          <GameHeader title="🎰 Slots 🎰" score={score} />
           <div className="slots-container">
             <div className="slot-images">
               <img
@@ -99,7 +99,7 @@ export default function Slots({ score, updateScore }) {
                   <button
                     className="slots-button"
                     onClick={() =>
-                      bet < score ? setBet(bet + 10) : setBet(score)
+                      bet + 10 < score ? setBet(bet + 10) : setBet(score)
                     }
                   >
                     +
@@ -123,7 +123,7 @@ export default function Slots({ score, updateScore }) {
 
             {spinOver && betResult != 0 ? (
               <p className="slots-result">
-                {spinWin ? "JACKPOT YOU WIN" : "You lost"}: ${betResult}
+                {spinWin ? "🤑 JACKPOT 🤑 YOU WIN" : "You lost"}: ${betResult}
               </p>
             ) : (
               <></>

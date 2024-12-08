@@ -1,7 +1,7 @@
 #horses {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
+  margin: 100px 0px 50px 0px;
   position: relative;
   left: -500px;
 }
@@ -9,11 +9,12 @@
 #race-button {
   background-color: gold;
   display: flex;
-  padding: 10px 10px;
+  padding: 20px;
   align-items: center;
   justify-self: center;
   border-radius: 20px;
   color: black;
+  font-size: 30px;
 }
 
 #reset-button {
@@ -24,7 +25,15 @@
   border-radius: 20px;
 }
 
-#zeros {
+#over-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
+}
+
+#colors {
   display: grid;
   flex-direction: column;
   align-items: flex-start;
@@ -32,10 +41,12 @@
   gap: 15px;
 }
 
-#zeros button {
+#colors button {
   border-radius: 20px;
   width: 200px;
   height: 45px;
+  font-size: 20px;
+  padding: 10px;
 }
 
 #red {
@@ -60,7 +71,6 @@
   justify-content: space-around;
   align-items: center;
   gap: 15px;
-  margin-top: 40px;
 }
 
 #bet {

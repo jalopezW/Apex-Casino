@@ -151,7 +151,7 @@ export default function Roulette({ score }) {
 
   return (
     <div id="rbody">
-      <GameHeader title="Roulette" score={score} />
+      <GameHeader title="🔴 Roulette ⚫" score={score} />
 
       <div id="main">
         <div class="Roulette">

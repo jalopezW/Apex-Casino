@@ -192,7 +192,7 @@ export default function Poker({ score }) {
 
   return (
     <>
-      <GameHeader title="Poker" score={score} />
+      <GameHeader title="💰 Poker 💰" score={score} />
 
       <div id="table">
         {drawing ? (

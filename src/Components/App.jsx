@@ -35,9 +35,9 @@ export default function App() {
     if (user) {
       newUser();
       getScore().then(setScore);
-      getTopFive().then(setLeaderboard);
       getPosition().then(setPosition);
     }
+    getTopFive().then(setLeaderboard);
   }, [user, score]);
 
   return (

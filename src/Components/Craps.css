@@ -1,4 +1,83 @@
 #everything {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+#left {
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+}
+
+#craps-bet {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+#buttons {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.full {
+  grid-column: span 6;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.half {
+  grid-column: span 3;
+}
+.third {
+  grid-column: span 2;
+}
+
+#buttons button {
+  border-radius: 0;
+  border: 2px solid white;
+  font-size: 20px;
+}
+
+#selected {
+  background-color: green;
+}
+
+#disabled {
+  background-color: gray;
+}
+
+#button-images {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.red {
+  color: darkred;
+}
+
+#info-area {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+#info-area button {
+  grid-row: span 3;
+  font-size: 50px;
+}
+
+#info-area p {
+  grid-column: span 1;
+  font-size: 20px;
+  text-wrap: wrap;
+  max-width: 20vw;
 }
