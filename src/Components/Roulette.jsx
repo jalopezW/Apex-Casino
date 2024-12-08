@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "./Roulette.css";
 import { Wheel } from "react-custom-roulette";
 
-export default function Roulette({ score }) {
+export default function Roulette({ score, updateScore }) {
   const possibilities = [
     { option: "0" },
     { option: "28" },
@@ -45,6 +45,7 @@ export default function Roulette({ score }) {
     { option: "14" },
     { option: "2" },
   ];
+
   const red = [
     "1",
     "3",
@@ -105,7 +106,8 @@ export default function Roulette({ score }) {
     "red",
     "black",
   ];
-  const [spinValue, setSpinValue] = useState("37");
+
+  const [spinValue, setSpinValue] = useState(null);
   const [winners, setWinners] = useState([]);
   const [betList, setBetList] = useState(new Map());
   const [mustSpin, setMustSpin] = useState(false);
@@ -115,14 +117,14 @@ export default function Roulette({ score }) {
     const randomIndex = Math.floor(Math.random() * possibilities.length);
     setMustSpin(true);
     setPrizeIndex(randomIndex);
-    setSpinValue(possibilities[randomIndex].option);
+    setSpinValue(null);
   }
 
-  function getWinners() {
-    var tempWinners = [];
-    var spinNum = Number(spinValue);
+  function getWinners(spinResult) {
+    const tempWinners = [];
+    const spinNum = Number(spinResult);
 
-    tempWinners.push(spinValue);
+    tempWinners.push(spinResult);
 
     spinNum < 13
       ? tempWinners.push("1st 12")
@@ -134,7 +136,7 @@ export default function Roulette({ score }) {
 
     spinNum < 19 ? tempWinners.push("1 - 18") : tempWinners.push("19 - 36");
 
-    red.includes(spinValue)
+    red.includes(spinResult)
       ? tempWinners.push("Red")
       : tempWinners.push("Black");
 
@@ -147,36 +149,44 @@ export default function Roulette({ score }) {
     setWinners(tempWinners);
   }
 
-  useEffect(() => getWinners(), [spinValue]);
+  const handleSpinComplete = () => {
+    const result = possibilities[prizeIndex].option;
+    setSpinValue(result);
+    getWinners(result);
+    setMustSpin(false);
+  };
 
   return (
     <div id="rbody">
       <GameHeader title="🔴 Roulette ⚫" score={score} />
-
       <div id="main">
-        <div class="Roulette">
+        {/* Roulette Wheel Section */}
+        <div className="Roulette">
           <Wheel
             mustStartSpinning={mustSpin}
             prizeNumber={prizeIndex}
             data={possibilities}
             backgroundColors={colors}
             textColors={["white"]}
-            onStopSpinning={() => setMustSpin(false)}
+            onStopSpinning={handleSpinComplete} // Trigger after spinning
             fontSize={20}
             perpendicularText={true}
             textDistance={90}
           />
-          {spinValue < 37 ? (
-            <>
-              {spinValue} {winners}
-            </>
-          ) : (
-            <></>
+          <button onClick={() => Spin()}>Spin</button>
+          {spinValue && (
+            <div className="winners-display">
+              <div>Spin Result: {spinValue}</div>
+              <div>Winners: {winners.join(", ")}</div>
+            </div>
           )}
-          <button onClick={() => Spin()}> spin</button>
         </div>
 
-        <div class="betting">
+        {/* Roulette Table Section */}
+        <div id="roulette-table" className="middle"></div>
+
+        {/* Betting Section */}
+        <div className="betting">
           <RouletteBet betList={betList} setBetList={setBetList} />
         </div>
       </div>
