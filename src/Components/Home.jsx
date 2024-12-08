@@ -13,7 +13,11 @@ export default function Home({
 }) {
   return (
     <div className="container">
-      <h1>Apex Casino</h1>
+      <div id="home-header">
+        <img src="/images/Lion.png" width="75px" height="75px" />
+        <h1>Apex Casino</h1>
+        <img src="/images/Lion.png" width="75px" height="75px" />
+      </div>
 
       <div className="stats-container">
         <div className="leaderboard">
@@ -21,7 +25,6 @@ export default function Home({
           <ol>
             {leaderboard.map((player, index) => (
               <li key={index}>
-                {" "}
                 {index + 1}: {player.Name} - {player.LionBucks.toLocaleString()}{" "}
               </li>
             ))}
@@ -46,7 +49,7 @@ export default function Home({
                 <h2>Watch an Ad for 1,000 Lion Bucks!</h2>
                 <ReactPlayer
                   url="https://youtu.be/KT0U_JoxstU?si=kjD6wBt6iK2-HHhG"
-                  width="300px"
+                  width="400px"
                   height="250px"
                   onEnded={() => updateScore(1000)}
                 />
@@ -65,43 +68,43 @@ export default function Home({
       <div className="game-buttons">
         <Link to="/Blackjack">
           <button>
-            Blackjack
-            <img src="/images/Blackjack.png" height="100px" width="100px" />
+            <p>Blackjack</p>
+            <img src="/images/Blackjack.png" height="125px" width="125px" />
           </button>
         </Link>
 
         <Link to="/Craps">
           <button>
-            Craps
-            <img src="/images/Craps.png" height="100px" width="100px" />
+            <p>Craps</p>
+            <img src="/images/Craps.png" height="125px" width="125px" />
           </button>
         </Link>
 
         <Link to="/Poker">
           <button>
-            Poker
-            <img src="/images/Poker.png" height="100px" width="100px" />
+            <p>Poker</p>
+            <img src="/images/Poker.png" height="125px" width="125px" />
           </button>
         </Link>
 
         <Link to="/Race">
           <button>
-            Race
-            <img src="/images/Race.png" height="100px" width="100px" />
+            <p>Race</p>
+            <img src="/images/Race.png" height="125px" width="125px" />
           </button>
         </Link>
 
         <Link to="/Roulette">
           <button>
-            Roulette
-            <img src="/images/Roulette.png" height="100px" width="100px" />
+            <p>Roulette</p>
+            <img src="/images/Roulette.png" height="125px" width="125px" />
           </button>
         </Link>
 
         <Link to="/Slots">
           <button>
-            Slots
-            <img src="/images/Slots.png" height="100px" width="100px" />
+            <p>Slots</p>
+            <img src="/images/Slots.png" height="125px" width="125px" />
           </button>
         </Link>
       </div>

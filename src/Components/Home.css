@@ -15,6 +15,7 @@ body {
 h1 {
   color: #ffcc00;
   margin-bottom: 1rem;
+  padding: 10px;
 }
 
 .container {
@@ -22,7 +23,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  width: 50vw;
   max-width: 800px;
 }
 
@@ -89,25 +90,30 @@ h1 {
 }
 
 .game-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
   justify-content: center;
   margin-top: 1rem;
 }
 
-.game-buttons button {
+.game-buttons Link button {
   background-color: #444;
   color: #f4f4f4;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  flex: 1 1 calc(30% - 10px);
-  max-width: 150px;
-  min-width: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
-.game-buttons button:hover {
+.game-buttons Link button:hover {
   background-color: #555;
+}
+
+#home-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

@@ -57,9 +57,10 @@ export default function Blackjack({ score, updateScore }) {
   }
 
   function endGame() {
-    playerScore > dealerScore
+    setDrawing(false);
+    (playerScore > dealerScore && playerScore <= 21) || dealerScore > 21
       ? (setWin(true), updateScore(bet))
-      : playerScore < dealerScore
+      : (playerScore < dealerScore && dealerScore <= 21) || playerScore > 21
       ? (setLose(true), updateScore(bet * -1))
       : setTie(true);
   }
@@ -100,15 +101,13 @@ export default function Blackjack({ score, updateScore }) {
     setDealerScore(getScore(dealerCards));
   }, [dealerCards]);
   useEffect(() => {
-    playerScore > 21 ? (setLose(true), setDrawing(false)) : null;
+    playerScore > 21 ? endGame() : null;
   }, [playerScore]);
   useEffect(() => {
-    dealerScore > 21
-      ? setWin(true)
-      : !drawing && dealerScore < 17
-      ? () => addCard("dealer")
-      : !drawing && 17 <= dealerScore <= 21
+    dealerScore >= 17 && !drawing
       ? endGame()
+      : !drawing
+      ? addCard("dealer")
       : null;
   }, [dealerScore]);
 
@@ -150,20 +149,32 @@ export default function Blackjack({ score, updateScore }) {
             </>
           )}
         </div>
-        <div id="results">
-          {!betting && (
-            <div>
-              <p>{drawing ? "???" : dealerScore}</p>
+        {!betting && (
+          <div id="results">
+            <div id="results-text">
+              <p
+                style={{
+                  color: !drawing ? (lose ? "green" : "red") : "white",
+                }}
+              >
+                {drawing ? "???" : dealerScore}
+              </p>
               <p>vs</p>
-              <p>{playerScore}</p>
-              {(lose || win || tie) && (
-                <button id="playAgainButton" onClick={() => reset()}>
-                  Play Again
-                </button>
-              )}
+              <p
+                style={{
+                  color: !drawing ? (win ? "green" : "red") : "white",
+                }}
+              >
+                {playerScore}
+              </p>
             </div>
-          )}
-        </div>
+            {(lose || win || tie) && (
+              <button id="playAgainButton" onClick={() => reset()}>
+                Play Again
+              </button>
+            )}
+          </div>
+        )}
       </div>
       <div id="bettingSection">
         {betting ? (

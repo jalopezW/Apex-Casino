@@ -5,6 +5,7 @@ import CrapsBet from "./CrapsBet";
 export default function Craps({ score, updateScore }) {
   const multipliers = [0, 0, 31, 16, 8, 0, 10, 5, 10, 0, 8, 16, 31];
   const [betList, setBetList] = useState({});
+  const [writtenBet, setWrittenBet] = useState("");
   const [dice1, setDice1] = useState(1);
   const [dice2, setDice2] = useState(1);
   const [result, setResult] = useState(0);
@@ -18,10 +19,17 @@ export default function Craps({ score, updateScore }) {
   async function roll() {
     setResult(0);
     setRolling(true);
-    await sleep(1000);
+    await sleep(2000);
     setDice1(Math.floor(Math.random() * 6 + 1));
     setDice2(Math.floor(Math.random() * 6 + 1));
     setRolling(false);
+  }
+
+  function updateBet(newBet) {
+    setBetList(newBet);
+    setWrittenBet(
+      Object.keys(newBet).map((key) => `${key} = $${newBet[key]} `)
+    );
   }
 
   function calculateScore() {
@@ -47,30 +55,38 @@ export default function Craps({ score, updateScore }) {
   useEffect(() => {
     calculateScore();
   }, [result]);
+
   return (
     <>
       <GameHeader title="Craps" score={score} />
+      <div id="everything">
+        <div id="dice">
+          <img
+            src={rolling ? "/images/rolling.gif" : `/images/craps_${dice1}.png`}
+            width={"100px"}
+            height={"100px"}
+          />
+          <img
+            src={rolling ? "/images/rolling.gif" : `/images/craps_${dice2}.png`}
+            width={"100px"}
+            height={"100px"}
+          />
+        </div>
+        <div id="info-area">
+          {Object.keys(betList).length > 0 && (
+            <button onClick={roll}>Roll!</button>
+          )}
+          <p>Placed Bets: {writtenBet}</p>
+          <p>Dice Roll: {result}</p>
+          <p>Win/Loss: ${totalWinnings}</p>
+        </div>
 
-      <div id="dice">
-        <img
-          src={rolling ? "/images/rolling.gif" : `/images/craps_${dice1}.png`}
-          width={"100px"}
-          height={"100px"}
-        />
-        <img
-          src={rolling ? "/images/rolling.gif" : `/images/craps_${dice2}.png`}
-          width={"100px"}
-          height={"100px"}
-        />
+        {rolling ? (
+          <></>
+        ) : (
+          <CrapsBet betList={betList} setBetList={updateBet} />
+        )}
       </div>
-      <div id="info-area">
-        <button onClick={roll}>Roll!</button>
-        <p>Placed Bets: {JSON.stringify(betList)}</p>
-        <p>Dice Roll: {result}</p>
-        <p>Win/Loss: ${totalWinnings}</p>
-      </div>
-
-      {rolling ? <></> : <CrapsBet betList={betList} setBetList={setBetList} />}
     </>
   );
 }

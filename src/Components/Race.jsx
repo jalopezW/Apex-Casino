@@ -6,34 +6,34 @@ import "./Race.css";
 export default function Race({ score, updateScore }) {
   const horses = ["Red", "Blue", "Green"];
   const [isMoved, setIsMoved] = useState(false);
-  const [winners, setWinners] = useState(new Map());
+  const [winners, setWinners] = useState({});
   const [winner, setWinner] = useState("");
-  const [betList, setBetList] = useState(new Map());
+  const [betList, setBetList] = useState({});
+  const [writtenBet, setWrittenBet] = useState("");
   const [over, setOver] = useState(false);
 
   function getWinner() {
-    // const firstPlace = Math.floor(Math.random() * horses.length)
-    // setWinner(horses[firstPlace])
-    // var secondPlace = firstPlace
-    // while (firstPlace == secondPlace){
-    //     secondPlace = Math.floor(Math.random() * horses.length)
-    // }
-    // setSecond(horses[secondPlace])
-
-    const result = new Map();
+    const result = {};
     const copy = [...horses];
 
-    while (result.size < 3) {
+    while (Object.keys(result).length < 3) {
       const randomIndex = Math.floor(Math.random() * copy.length);
       const chosenElement = copy.splice(randomIndex, 1)[0];
-      if (result.size == 0) {
+      if (Object.keys(result).length == 0) {
         setWinner(chosenElement);
       }
-      result.set(chosenElement, result.size + 1);
+      result[chosenElement] = Object.keys(result).length + 1;
     }
     setOver(true);
     setIsMoved(!isMoved);
     setWinners(result);
+  }
+
+  function updateBet(newBet) {
+    setBetList(newBet);
+    setWrittenBet(
+      Object.keys(newBet).map((key) => `${key} = $${newBet[key]} `)
+    );
   }
 
   function placeToSeconds(place) {
@@ -43,7 +43,19 @@ export default function Race({ score, updateScore }) {
   function reset() {
     setOver(false);
     setIsMoved(!isMoved);
+    setBetList({});
+    setWrittenBet(0);
   }
+
+  function endGame() {
+    winner in betList
+      ? updateScore(betList[winner])
+      : updateScore(Object.values(betList)[0] * -1);
+  }
+
+  useEffect(() => {
+    over && endGame();
+  }, [over]);
 
   return (
     <>
@@ -54,10 +66,8 @@ export default function Race({ score, updateScore }) {
           width={"100px"}
           height={"100px"}
           style={{
-            transition: `transform ${placeToSeconds(
-              winners.get("Red")
-            )}s linear`,
-            transform: isMoved ? "translateX(800px)" : "translateX(0)",
+            transition: `transform ${placeToSeconds(winners["Red"])}s linear`,
+            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
           }}
         />
         <img
@@ -65,10 +75,8 @@ export default function Race({ score, updateScore }) {
           width={"100px"}
           height={"100px"}
           style={{
-            transition: `transform ${placeToSeconds(
-              winners.get("Blue")
-            )}s linear`,
-            transform: isMoved ? "translateX(800px)" : "translateX(0)",
+            transition: `transform ${placeToSeconds(winners["Blue"])}s linear`,
+            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
           }}
         />
         <img
@@ -76,10 +84,8 @@ export default function Race({ score, updateScore }) {
           width={"100px"}
           height={"100px"}
           style={{
-            transition: `transform ${placeToSeconds(
-              winners.get("Green")
-            )}s linear`,
-            transform: isMoved ? "translateX(800px)" : "translateX(0)",
+            transition: `transform ${placeToSeconds(winners["Green"])}s linear`,
+            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
           }}
         />
       </div>
@@ -88,16 +94,23 @@ export default function Race({ score, updateScore }) {
         <>
           <button id="reset-button" onClick={reset}>
             Reset
-          </button>{" "}
-          <p>{winner} wins!</p>{" "}
+          </button>
+          <p>{winner} wins!</p>
+          {winner in betList ? (
+            <p>You win ${betList[winner]}</p>
+          ) : (
+            <p>You lost ${Object.values(betList)[0]}</p>
+          )}
         </>
       ) : (
-        <button id="race-button" onClick={getWinner}>
-          Race!
-        </button>
+        Object.keys(betList).length > 0 && (
+          <button id="race-button" onClick={getWinner}>
+            Race!
+          </button>
+        )
       )}
 
-      <RaceBet betList={betList} setBetList={setBetList} />
+      <RaceBet betList={betList} setBetList={updateBet} />
     </>
   );
 }

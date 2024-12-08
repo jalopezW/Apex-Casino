@@ -38,7 +38,7 @@ export default function App() {
       getTopFive().then(setLeaderboard);
       getPosition().then(setPosition);
     }
-  }, [user]);
+  }, [user, score]);
 
   return (
     <BrowserRouter>

@@ -5,7 +5,7 @@ export default function BetPlacer({ bet, flag, score }) {
   const [tempBet, settempBet] = useState(0);
 
   function updateBet(toAdd) {
-    tempBet >= score ? settempBet(score) : settempBet(tempBet + toAdd);
+    tempBet + toAdd >= score ? settempBet(score) : settempBet(tempBet + toAdd);
   }
 
   function endbetting() {

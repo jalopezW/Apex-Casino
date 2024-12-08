@@ -17,10 +17,17 @@ export function SignOut({ score }) {
         flexDirection: "row",
       }}
     >
-      <p style={{ marginRight: "10px" }}>
-        Hello, {loggedInUserDisplayName()}! You have {score.toLocaleString()}{" "}
-        LionBucks{" "}
-      </p>
+      <div
+        style={{
+          marginRight: "10px",
+          display: "flex",
+          flexDirection: "column",
+          fontSize: "10px",
+        }}
+      >
+        <p>Hello, {loggedInUserDisplayName()}!</p>
+        <p> You have {score.toLocaleString()} LionBucks </p>
+      </div>
       <SignOutButton />
     </div>
   );

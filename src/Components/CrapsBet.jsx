@@ -6,7 +6,6 @@ export default function CrapsBet({ betList, setBetList }) {
 
   function updateBet(toAdd) {
     var tempBetList = betList;
-
     currentBet in betList
       ? (tempBetList[currentBet] = tempBetList[currentBet] + toAdd)
       : (tempBetList[currentBet] = toAdd);
@@ -23,7 +22,7 @@ export default function CrapsBet({ betList, setBetList }) {
   }
 
   useEffect(() => {
-    setBetValue(betList[currentBet]);
+    setBetValue(betList[currentBet] ? betList[currentBet] : 0);
   }, [currentBet]);
 
   return (
@@ -41,67 +40,70 @@ export default function CrapsBet({ betList, setBetList }) {
       <button onClick={() => setCurrrentBet("Any")}>
         8 to 1 Any Craps 8 to 1
       </button>
+      {currentBet ? (
+        <footer>
+          <div id="bet">
+            <img
+              onClick={() => updateBet(1)}
+              src={"/images/White.png"}
+              width={100}
+              height={100}
+            />
 
-      <footer>
-        <div id="bet">
-          <img
-            onClick={() => updateBet(1)}
-            src={"/images/White.png"}
-            width={100}
-            height={100}
-          />
+            <img
+              onClick={() => updateBet(5)}
+              src={"/images/Red.png"}
+              width={100}
+              height={100}
+            />
 
-          <img
-            onClick={() => updateBet(5)}
-            src={"/images/Red.png"}
-            width={100}
-            height={100}
-          />
+            <img
+              onClick={() => updateBet(25)}
+              src={"/images/Green.png"}
+              width={100}
+              height={100}
+            />
 
-          <img
-            onClick={() => updateBet(25)}
-            src={"/images/Green.png"}
-            width={100}
-            height={100}
-          />
+            <img
+              onClick={() => updateBet(100)}
+              src={"/images/Black.png"}
+              width={100}
+              height={100}
+            />
 
-          <img
-            onClick={() => updateBet(100)}
-            src={"/images/Black.png"}
-            width={100}
-            height={100}
-          />
+            <img
+              onClick={() => updateBet(500)}
+              src={"/images/Purple.png"}
+              width={100}
+              height={100}
+            />
 
-          <img
-            onClick={() => updateBet(500)}
-            src={"/images/Purple.png"}
-            width={100}
-            height={100}
-          />
+            <img
+              onClick={() => updateBet(1000)}
+              src={"/images/Orange.png"}
+              width={100}
+              height={100}
+            />
 
-          <img
-            onClick={() => updateBet(1000)}
-            src={"/images/Orange.png"}
-            width={100}
-            height={100}
-          />
+            <p> $1 </p>
+            <p> $5 </p>
+            <p> $25 </p>
+            <p> $100 </p>
+            <p> $500 </p>
+            <p> $1000 </p>
+          </div>
 
-          <p> $1 </p>
-          <p> $5 </p>
-          <p> $25 </p>
-          <p> $100 </p>
-          <p> $500 </p>
-          <p> $1000 </p>
-        </div>
-
-        <div id="betOutput">
-          <p>
-            Bet on {currentBet}: $ {currentBet in betList ? betValue : 0}
-          </p>
-          <button onClick={() => clearEntry()}>Clear</button>
-          <button onClick={() => setBetList({})}>Clear All</button>
-        </div>
-      </footer>
+          <div id="betOutput">
+            <p>
+              Bet on {currentBet}: $ {currentBet in betList ? betValue : 0}
+            </p>
+            <button onClick={() => clearEntry()}>Clear</button>
+            <button onClick={() => setBetList({})}>Clear All</button>
+          </div>
+        </footer>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

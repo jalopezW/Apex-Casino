@@ -123,7 +123,7 @@ export default function Slots({ score, updateScore }) {
 
             {spinOver && betResult != 0 ? (
               <p className="slots-result">
-                You {spinWin ? "won" : "lost"}: {betResult}
+                {spinWin ? "JACKPOT YOU WIN" : "You lost"}: ${betResult}
               </p>
             ) : (
               <></>
