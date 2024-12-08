@@ -64,27 +64,45 @@ export default function Home({
 
       <div className="game-buttons">
         <Link to="/Blackjack">
-          <button>Blackjack</button>
+          <button>
+            Blackjack
+            <img src="/images/Blackjack.png" height="100px" width="100px" />
+          </button>
         </Link>
 
         <Link to="/Craps">
-          <button>Craps</button>
+          <button>
+            Craps
+            <img src="/images/Craps.png" height="100px" width="100px" />
+          </button>
         </Link>
 
         <Link to="/Poker">
-          <button>Poker</button>
+          <button>
+            Poker
+            <img src="/images/Poker.png" height="100px" width="100px" />
+          </button>
         </Link>
 
         <Link to="/Race">
-          <button>Race</button>
+          <button>
+            Race
+            <img src="/images/Race.png" height="100px" width="100px" />
+          </button>
         </Link>
 
         <Link to="/Roulette">
-          <button>Roulette</button>
+          <button>
+            Roulette
+            <img src="/images/Roulette.png" height="100px" width="100px" />
+          </button>
         </Link>
 
         <Link to="/Slots">
-          <button>Slots</button>
+          <button>
+            Slots
+            <img src="/images/Slots.png" height="100px" width="100px" />
+          </button>
         </Link>
       </div>
     </div>
