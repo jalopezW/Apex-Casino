@@ -41,17 +41,22 @@ export async function getScore() {
 }
 
 export async function getPosition() {
-  //fix
   const userID = loggedInUserID();
 
   const docRef = doc(db, "user_scores", userID);
   const docSnap = await getDoc(docRef);
 
-  const querySnapshot = await getDocs(collection(db, "user_scores"));
+  const scoreRef = collection(db, "user_scores");
+  const q = query(scoreRef, orderBy("LionBucks", "desc"));
+  const querySnapshot = await getDocs(q);
 
-  console.log(querySnapshot.indexOf(docSnap));
+  const queryList = querySnapshot.docs
+    .map((doc) => ({
+      ...doc.data(),
+    }))
+    .map((doc) => JSON.stringify(doc));
 
-  return querySnapshot.indexOf(docSnap) + 1;
+  return queryList.indexOf(JSON.stringify(docSnap.data())) + 1;
 }
 
 export async function incrementScore(amount) {
