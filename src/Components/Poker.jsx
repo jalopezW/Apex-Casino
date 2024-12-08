@@ -44,11 +44,40 @@ export default function Poker({ score }) {
     setCommunityCards(cCards);
   }
 
+  async function newHand() {
+    var pCards = [];
+    var cCards = [];
+    await getCard(currentDeck).then((card) => (pCards = [...pCards, ...card]));
+    await getCard(currentDeck).then((card) => (pCards = [...pCards, ...card]));
+    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
+    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
+    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
+    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
+    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
+    setPlayerCards(pCards);
+    setCommunityCards(cCards);
+  }
+
   function calculate_hands(playerhand, communitycards) {
-    bettingFlag();
     const community = communitycards.map((card) => card.code);
     const player = playerhand.map((card) => card.code);
     const total = [...community, ...player];
+    const spades = total
+      .map((code) => (code[1] == "S" ? cardScore(code[0]) : null))
+      .filter((element) => element != null)
+      .sort((a, b) => b - a);
+    const diamonds = total
+      .map((code) => (code[1] == "D" ? cardScore(code[0]) : null))
+      .filter((element) => element != null)
+      .sort((a, b) => b - a);
+    const hearts = total
+      .map((code) => (code[1] == "H" ? cardScore(code[0]) : null))
+      .filter((element) => element != null)
+      .sort((a, b) => b - a);
+    const clubs = total
+      .map((code) => (code[1] == "C" ? cardScore(code[0]) : null))
+      .filter((element) => element != null)
+      .sort((a, b) => b - a);
     const suits = total.map((code) => code[1]);
     const cardNum = total.map((code) => cardScore(code[0]));
     const suitsFreq = frequency(suits);
@@ -59,7 +88,11 @@ export default function Poker({ score }) {
 
     var winner = "";
 
-    freqOfFreq.includes(4)
+    checkRoyalFlush(spades, diamonds, hearts, clubs)
+      ? console.log("royal flush")
+      : checkStraightFlush(spades, diamonds, hearts, clubs)
+      ? console.log("straight flush")
+      : freqOfFreq.includes(4)
       ? console.log("4 of kind")
       : freqOfFreq.includes(3) && freqOfFreq.includes(2)
       ? console.log("full house")
@@ -69,7 +102,7 @@ export default function Poker({ score }) {
       ? console.log("straight")
       : freqOfFreq.includes(3)
       ? console.log("3 of kind")
-      : frequency(freqOfFreq)[2] == 2
+      : frequency(freqOfFreq)[2] >= 2
       ? console.log("2 pair")
       : freqOfFreq.includes(2)
       ? console.log("2 of kind")
@@ -95,6 +128,8 @@ export default function Poker({ score }) {
       ? 12
       : card == "J"
       ? 11
+      : card == "0"
+      ? 10
       : Number(card);
   }
 
@@ -113,6 +148,26 @@ export default function Poker({ score }) {
       }
       return false;
     }
+  }
+
+  function checkStraightFlush(spades, diamonds, hearts, clubs) {
+    return checkStraight(spades) ||
+      checkStraight(diamonds) ||
+      checkStraight(hearts) ||
+      checkStraight(clubs)
+      ? true
+      : false;
+  }
+
+  function checkRoyalFlush(spades, diamonds, hearts, clubs) {
+    const rFlush = [14, 13, 12, 11, 10];
+
+    return JSON.stringify(spades.slice(0, 5)) === JSON.stringify(rFlush) ||
+      JSON.stringify(diamonds.slice(0, 5)) === JSON.stringify(rFlush) ||
+      JSON.stringify(hearts.slice(0, 5)) === JSON.stringify(rFlush) ||
+      JSON.stringify(clubs.slice(0, 5)) === JSON.stringify(rFlush)
+      ? true
+      : false;
   }
 
   function endGame() {
@@ -160,6 +215,10 @@ export default function Poker({ score }) {
               onClick={() => calculate_hands(playerCards, communityCards)}
             >
               calc
+            </button>
+            <button onClick={() => newHand()}>new hand</button>
+            <button onClick={() => getDeck.then(setCurrentDeck)}>
+              new deck
             </button>
           </div>
         ) : (

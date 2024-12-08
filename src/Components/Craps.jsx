@@ -2,7 +2,7 @@ import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import CrapsBet from "./CrapsBet";
 
-export default function Craps({ score }) {
+export default function Craps({ score, updateScore }) {
   const multipliers = [0, 0, 31, 16, 8, 0, 10, 5, 10, 0, 8, 16, 31];
   const [betList, setBetList] = useState({});
   const [dice1, setDice1] = useState(1);
@@ -33,17 +33,16 @@ export default function Craps({ score }) {
         ? (total += betList["Any"] * 8)
         : null
       : null;
-    console.log(Object.values(betList).reduce((a, b) => a + b, 0));
     total -=
       Object.values(betList).reduce((a, b) => a + b, 0) -
       (result in betList ? betList[result] : 0);
-    console.log(total);
     setTotalWinnings(total);
+    updateScore(total);
   }
 
   useEffect(() => {
     setResult(dice1 + dice2);
-  }, [dice1, dice2]);
+  }, [dice2]);
 
   useEffect(() => {
     calculateScore();
@@ -52,22 +51,24 @@ export default function Craps({ score }) {
     <>
       <GameHeader title="Craps" score={score} />
 
-      <img
-        src={rolling ? "/images/rolling.gif" : `/images/craps_${dice1}.png`}
-        width={"100px"}
-        height={"100px"}
-      />
-      <img
-        src={rolling ? "/images/rolling.gif" : `/images/craps_${dice2}.png`}
-        width={"100px"}
-        height={"100px"}
-      />
-
-      <button onClick={roll}>Roll!</button>
-      <p>{JSON.stringify(betList)}</p>
-      <p>{result}</p>
-      <p>{totalWinnings}</p>
-      {result > 0 ? <>1</> : <>0</>}
+      <div id="dice">
+        <img
+          src={rolling ? "/images/rolling.gif" : `/images/craps_${dice1}.png`}
+          width={"100px"}
+          height={"100px"}
+        />
+        <img
+          src={rolling ? "/images/rolling.gif" : `/images/craps_${dice2}.png`}
+          width={"100px"}
+          height={"100px"}
+        />
+      </div>
+      <div id="info-area">
+        <button onClick={roll}>Roll!</button>
+        <p>Placed Bets: {JSON.stringify(betList)}</p>
+        <p>Dice Roll: {result}</p>
+        <p>Win/Loss: ${totalWinnings}</p>
+      </div>
 
       {rolling ? <></> : <CrapsBet betList={betList} setBetList={setBetList} />}
     </>
