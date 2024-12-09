@@ -15,7 +15,7 @@ export default function Poker({ score, updateScore, user }) {
   const [win, setWin] = useState(false);
 
   async function bettingFlag() {
-    await startGame();
+    round == 0 && (await startGame());
     setRound(round + 1);
     setBetting(false);
   }
