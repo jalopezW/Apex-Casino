@@ -184,7 +184,7 @@ export default function Poker({ score, updateScore, user }) {
   return (
     <>
       <GameHeader title="💰 Poker 💰" score={score} />
-      <div id="everythingP">
+      <div id="poker-body">
         <div id="game-table">
           {round > 0 && (
             <>
