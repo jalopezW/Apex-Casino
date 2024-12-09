@@ -1,5 +1,12 @@
 {
-  "name": "casino",
+  "name": "Apex Casino",
+  "author": {
+    "name": "Jay Dillon"
+  },
+  "contributors": [
+    "Jesus Lopez",
+    "Sebastian Rocha"
+  ],
   "private": true,
   "version": "0.0.0",
   "type": "module",
