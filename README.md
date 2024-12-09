@@ -51,6 +51,7 @@ Issues:
 
 - Poker winner does confirm that winning hand has at least one player card, and all ties are given to the player instead of being based on highest card in hand
 - Looks terrible on mobile
+- If there are graphical issues i.e. items clipping, please zoom out to get the full experience
 
 ### Like this project? Buy us a coffee.
 
