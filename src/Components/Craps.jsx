@@ -34,8 +34,8 @@ export default function Craps({ score, updateScore }) {
   }
 
   async function calculateScore() {
-    await sleep(2000);
     var total = 0;
+    console.log(betList);
     result in betList
       ? (total += betList[result] * multipliers[result])
       : "Any" in betList
@@ -50,7 +50,7 @@ export default function Craps({ score, updateScore }) {
     console.log(total);
     setTotalWinnings(total);
     updateScore(total);
-    setBetList({});
+    //setBetList({});
   }
 
   useEffect(() => {
@@ -89,7 +89,7 @@ export default function Craps({ score, updateScore }) {
                 <p>Current Placed Bet: {writtenBet}</p>
               </>
             )}
-            {!rolling && (
+            {!rolling && totalWinnings != 0 && (
               <>
                 <p>Last Roll: {result}</p>
 

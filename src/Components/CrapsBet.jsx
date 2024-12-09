@@ -14,14 +14,6 @@ export default function CrapsBet({ betList, setBetList }) {
     setBetValue(betList[currentBet]);
   }
 
-  function clearEntry() {
-    var tempBetList = betList;
-
-    delete tempBetList.currentBet;
-
-    setBetList(tempBetList);
-  }
-
   useEffect(() => {
     currentBet && setPicked(true);
     setBetValue(betList[currentBet] ? betList[currentBet] : 0);
@@ -175,7 +167,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>8 to 1</p>
         </button>
       </div>
-      {currentBet ? (
+      {currentBet && (
         <div id="bet-placer">
           <div id="bet">
             <img
@@ -241,8 +233,6 @@ export default function CrapsBet({ betList, setBetList }) {
             </button>
           </div>
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

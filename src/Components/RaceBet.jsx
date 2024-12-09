@@ -45,7 +45,7 @@ export default function RaceBet({ betList, setBetList }) {
             Green Bean
           </button>
         </div>
-        {currentBet ? (
+        {currentBet && (
           <div id="bet">
             <img
               onClick={() => updateBet(1)}
@@ -107,8 +107,6 @@ export default function RaceBet({ betList, setBetList }) {
               </button>
             </div>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </>
