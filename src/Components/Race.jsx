@@ -111,7 +111,7 @@ export default function Race({ score, updateScore }) {
         )
       )}
 
-      <RaceBet betList={betList} setBetList={updateBet} />
+      <RaceBet betList={betList} setBetList={updateBet} score={score} />
     </>
   );
 }

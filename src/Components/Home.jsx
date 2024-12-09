@@ -25,7 +25,8 @@ export default function Home({
           <ol>
             {leaderboard.map((player, index) => (
               <li key={index}>
-                {index + 1}: {player.Name} - {player.LionBucks.toLocaleString()}{" "}
+                {index + 1}: {player.Name} - $
+                {player.LionBucks.toLocaleString()}{" "}
               </li>
             ))}
           </ol>

@@ -15,9 +15,10 @@ export default function CrapsBet({ betList, setBetList }) {
   }
 
   useEffect(() => {
-    currentBet && setPicked(true);
-    setBetValue(betList[currentBet] ? betList[currentBet] : 0);
-    setBetList({});
+    currentBet &&
+      (setPicked(true),
+      setBetValue(betList[currentBet] ? betList[currentBet] : 0),
+      setBetList({}));
   }, [currentBet]);
 
   return (

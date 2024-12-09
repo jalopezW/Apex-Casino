@@ -20,6 +20,8 @@ export default function Craps({ score, updateScore }) {
   async function roll() {
     setResult(0);
     setRolling(true);
+    setDice1(0);
+    setDice2(0);
     await sleep(2000);
     setDice1(Math.floor(Math.random() * 6 + 1));
     setDice2(Math.floor(Math.random() * 6 + 1));
@@ -35,7 +37,6 @@ export default function Craps({ score, updateScore }) {
 
   async function calculateScore() {
     var total = 0;
-    console.log(betList);
     result in betList
       ? (total += betList[result] * multipliers[result])
       : "Any" in betList
@@ -43,14 +44,12 @@ export default function Craps({ score, updateScore }) {
         ? (total += betList["Any"] * 8)
         : null
       : null;
-    console.log(total);
     total -=
       Object.values(betList).reduce((a, b) => a + b, 0) -
       (result in betList ? betList[result] : 0);
-    console.log(total);
     setTotalWinnings(total);
     updateScore(total);
-    //setBetList({});
+    setBetList({});
   }
 
   useEffect(() => {
@@ -94,7 +93,8 @@ export default function Craps({ score, updateScore }) {
                 <p>Last Roll: {result}</p>
 
                 <p>
-                  {totalWinnings > 0 ? "You won" : "You lost"}: ${totalWinnings}
+                  {totalWinnings > 0 ? "You won" : "You lost"}: $
+                  {Math.abs(totalWinnings)}
                 </p>
               </>
             )}

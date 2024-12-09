@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function RaceBet({ betList, setBetList }) {
+export default function RaceBet({ betList, setBetList, score }) {
   const [currentBet, setCurrrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
   const [picked, setPicked] = useState(false);
