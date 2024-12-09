@@ -1,26 +1,23 @@
 import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import { getDeck, getCard } from "../Services/cardService";
-import BetPlacer from "./BetPlacer.jsx";
+import CardBetPlacer from "./CardBetPlacer";
+import "./Poker.css";
 
-export default function Poker({ score }) {
-  const [betting, setBetting] = useState(true);
+export default function Poker({ score, updateScore, user }) {
+  const [betting, setBetting] = useState(false);
+  const [round, setRound] = useState(0);
   const [bet, setBet] = useState(0);
   const [currentDeck, setCurrentDeck] = useState("");
   const [playerCards, setPlayerCards] = useState([]);
   const [botCards, setBotCards] = useState([]);
   const [communityCards, setCommunityCards] = useState([]);
-  const [drawing, setDrawing] = useState(false);
-  const [playerScore, setPlayerScore] = useState(0);
-  const [botScores, setBotScores] = useState([]);
-  const [lose, setLose] = useState(false);
   const [win, setWin] = useState(false);
-  const [tie, setTie] = useState(false);
 
   async function bettingFlag() {
-    setBetting(false);
     await startGame();
-    setDrawing(true);
+    setRound(round + 1);
+    setBetting(false);
   }
 
   async function startGame() {
@@ -41,20 +38,6 @@ export default function Poker({ score }) {
     setCurrentDeck(deck);
     setPlayerCards(pCards);
     setBotCards(dCards);
-    setCommunityCards(cCards);
-  }
-
-  async function newHand() {
-    var pCards = [];
-    var cCards = [];
-    await getCard(currentDeck).then((card) => (pCards = [...pCards, ...card]));
-    await getCard(currentDeck).then((card) => (pCards = [...pCards, ...card]));
-    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
-    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
-    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
-    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
-    await getCard(currentDeck).then((card) => (cCards = [...cCards, ...card]));
-    setPlayerCards(pCards);
     setCommunityCards(cCards);
   }
 
@@ -86,27 +69,28 @@ export default function Poker({ score }) {
     var sortedCardNum = [...new Set(cardNum)];
     sortedCardNum.sort((a, b) => b - a);
 
-    var winner = "";
+    var winner = 0;
 
     checkRoyalFlush(spades, diamonds, hearts, clubs)
-      ? console.log("royal flush")
+      ? (winner = 10)
       : checkStraightFlush(spades, diamonds, hearts, clubs)
-      ? console.log("straight flush")
+      ? (winner = 9)
       : freqOfFreq.includes(4)
-      ? console.log("4 of kind")
+      ? (winner = 8)
       : freqOfFreq.includes(3) && freqOfFreq.includes(2)
-      ? console.log("full house")
+      ? (winner = 7)
       : Object.values(suitsFreq).includes(5)
-      ? console.log("flush")
+      ? (winner = 6)
       : checkStraight(sortedCardNum)
-      ? console.log("straight")
+      ? (winner = 5)
       : freqOfFreq.includes(3)
-      ? console.log("3 of kind")
+      ? (winner = 4)
       : frequency(freqOfFreq)[2] >= 2
-      ? console.log("2 pair")
+      ? (winner = 3)
       : freqOfFreq.includes(2)
-      ? console.log("2 of kind")
-      : console.log("high card");
+      ? (winner = 2)
+      : (winner = 1);
+    return winner;
   }
 
   function frequency(list) {
@@ -170,72 +154,123 @@ export default function Poker({ score }) {
       : false;
   }
 
-  function endGame() {
-    const playerTotal = calculateScore(playerCards);
-    const botTotals = "nothing for now :)";
+  function endGame(fold) {
+    setRound(6);
+    var state = null;
+    calculate_hands(playerCards, communityCards) <
+    calculate_hands(botCards, communityCards)
+      ? (state = false)
+      : (state = true);
 
-    setPlayerScore(playerTotal);
-    setBotScores(botTotals);
+    fold && (state = false);
 
-    const maxBotScore = Math.max(...botTotals);
-
-    if (playerTotal > maxBotScore) {
-      setWin(true);
-    } else if (playerTotal === maxBotScore) {
-      setTie(true);
-    } else {
-      setLose(true);
-    }
-
-    setDrawing(false);
+    state ? updateScore(bet) : updateScore(bet * -1);
+    setWin(state);
   }
+
+  function reset() {
+    setBetting(false);
+    setRound(0);
+    setBet(0);
+    setCurrentDeck("");
+    setPlayerCards([]);
+    setBotCards([]);
+    setCommunityCards([]);
+    setWin(false);
+  }
+
+  useEffect(() => {
+    5 > round && round > 3 && endGame(false);
+  }, [round]);
 
   return (
     <>
       <GameHeader title="💰 Poker 💰" score={score} />
-
-      <div id="table">
-        {drawing ? (
-          <div>
-            <img
-              src="https://deckofcardsapi.com/static/img/back.png"
-              alt="Face down card"
-            />
-            <img
-              src="https://deckofcardsapi.com/static/img/back.png"
-              alt="Face down card"
-            />
-            {playerCards.map((card) => (
-              <img key={card.code} src={card.image} alt={card.value} />
-            ))}
-            {communityCards.map((card) => (
-              <img key={card.code} src={card.image} alt={card.value} />
-            ))}
-            <button
-              onClick={() => calculate_hands(playerCards, communityCards)}
-            >
-              calc
-            </button>
-            <button onClick={() => newHand()}>new hand</button>
-            <button onClick={() => getDeck.then(setCurrentDeck)}>
-              new deck
-            </button>
-          </div>
-        ) : (
-          <></>
+      <div id="game-table">
+        {round > 0 && (
+          <>
+            <div id="enemy-cards">
+              {!(round > 3) ? (
+                <>
+                  <img
+                    src="https://deckofcardsapi.com/static/img/back.png"
+                    alt="Face down card"
+                  />
+                  <img
+                    src="https://deckofcardsapi.com/static/img/back.png"
+                    alt="Face down card"
+                  />
+                </>
+              ) : (
+                botCards.map((card) => (
+                  <img key={card.code} src={card.image} alt={card.value} />
+                ))
+              )}
+            </div>
+            <div id="community-cards">
+              <img src={communityCards[0].image} />
+              <img src={communityCards[1].image} />
+              <img src={communityCards[2].image} />
+              <img
+                src={
+                  round > 1
+                    ? communityCards[3].image
+                    : "https://deckofcardsapi.com/static/img/back.png"
+                }
+              />
+              <img
+                src={
+                  round > 2
+                    ? communityCards[4].image
+                    : "https://deckofcardsapi.com/static/img/back.png"
+                }
+              />
+            </div>
+            <div id="player-cards">
+              {playerCards.map((card) => (
+                <img key={card.code} src={card.image} alt={card.value} />
+              ))}
+            </div>
+            {!betting && !(round > 3) && (
+              <div id="player-buttons">
+                <button
+                  onClick={() => {
+                    endGame(true);
+                  }}
+                >
+                  Fold
+                </button>
+                <button
+                  onClick={() => {
+                    setRound(round + 1);
+                  }}
+                >
+                  Check
+                </button>
+                <button
+                  onClick={() => {
+                    setBetting(true);
+                  }}
+                >
+                  Bet
+                </button>
+              </div>
+            )}
+            <p>Current Pot: ${(bet * 2).toLocaleString()}</p>
+          </>
         )}
       </div>
-
-      {betting ? (
-        <BetPlacer bet={setBet} flag={() => bettingFlag()} />
-      ) : (
+      {(round == 0 || betting) && (
+        <CardBetPlacer
+          bet={(newBet) => setBet(bet + newBet)}
+          flag={bettingFlag}
+          score={score}
+        />
+      )}
+      {round > 3 && (
         <div id="results">
-          <p>Player's Score: {playerScore}</p>
-
-          {win && <p>You Win!</p>}
-          {lose && <p>You Lose!</p>}
-          {tie && <p>It's a Tie!</p>}
-          <button onClick={() => window.location.reload()}>Play Again</button>
+          {win ? "You win" : "You lose"}: ${bet.toLocaleString()}
+          <button onClick={() => reset()}>Play Again</button>
         </div>
       )}
     </>

@@ -1,7 +1,7 @@
 import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import { getDeck, getCard } from "../Services/cardService";
-import BetPlacer from "./BetPlacer";
+import CardBetPlacer from "./CardBetPlacer";
 import "./Blackjack.css";
 
 export default function Blackjack({ score, updateScore, user }) {
@@ -179,7 +179,7 @@ export default function Blackjack({ score, updateScore, user }) {
       <div id="bettingSection">
         {user &&
           (betting ? (
-            <BetPlacer bet={setBet} flag={bettingFlag} score={score} />
+            <CardBetPlacer bet={setBet} flag={bettingFlag} score={score} />
           ) : lose ? (
             <p>You Lost ${bet.toLocaleString()}</p>
           ) : win ? (

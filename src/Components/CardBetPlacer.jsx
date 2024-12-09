@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 
-export default function BetPlacer({ bet, flag, score }) {
+export default function CardBetPlacer({ bet, flag, score }) {
   const [tempBet, settempBet] = useState(0);
 
   function updateBet(toAdd) {
