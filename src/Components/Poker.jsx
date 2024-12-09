@@ -182,7 +182,7 @@ export default function Poker({ score, updateScore, user }) {
   }, [round]);
 
   return (
-    <div id="everything">
+    <div id="everythingP">
       <GameHeader title="💰 Poker 💰" score={score} />
       <div id="game-table">
         {round > 0 && (
@@ -258,7 +258,7 @@ export default function Poker({ score, updateScore, user }) {
           </>
         )}
       </div>
-      {(round == 0 || betting) && (
+      {(round == 0 || betting) && user && (
         <CardBetPlacer
           bet={(newBet) => setBet(bet + newBet >= score ? score : bet + newBet)}
           flag={bettingFlag}

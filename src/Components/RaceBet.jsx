@@ -11,7 +11,7 @@ export default function RaceBet({ betList, setBetList, score }) {
     totalBet + toAdd >= score
       ? currentBet in betList
         ? (tempBetList[currentBet] = score - totalBet + tempBetList[currentBet])
-        : setBetValue(0)
+        : (tempBetList[currentBet] = score)
       : currentBet in betList
       ? (tempBetList[currentBet] = tempBetList[currentBet] + toAdd)
       : (tempBetList[currentBet] = toAdd);
