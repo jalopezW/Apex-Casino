@@ -1,9 +1,5 @@
-import { auth, db } from "../Services/firebaseConfig.js";
-import {
-  loggedInUserDisplayName,
-  loggedInUserID,
-  useAuthentication,
-} from "./authService";
+import { db } from "../Services/firebaseConfig.js";
+import { loggedInUserDisplayName, loggedInUserID } from "./authService";
 import {
   collection,
   getDoc,

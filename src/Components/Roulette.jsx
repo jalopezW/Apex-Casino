@@ -3,7 +3,6 @@ import RouletteBet from "./RouletteBet";
 import { useEffect, useState } from "react";
 import "./Roulette.css";
 import { Wheel } from "react-custom-roulette";
-import { writeBatch } from "firebase/firestore";
 
 export default function Roulette({ score, updateScore, user }) {
   const possibilities = [
