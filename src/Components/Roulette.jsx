@@ -223,7 +223,9 @@ export default function Roulette({ score, updateScore }) {
           {writtenBet != "" && <h4>Current Bet(s): {writtenBet}</h4>}
         </div>
 
-        {!mustSpin && <RouletteBet betList={betList} setBetList={updateBet} />}
+        {!mustSpin && (
+          <RouletteBet betList={betList} setBetList={updateBet} score={score} />
+        )}
       </div>
     </div>
   );

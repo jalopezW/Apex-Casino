@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import "./Roulette.css";
 
-export default function RouletteBet({ betList, setBetList }) {
+export default function RouletteBet({ betList, setBetList, score }) {
   const [currentBet, setCurrrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
 
   function updateBet(toAdd) {
     var tempBetList = betList;
-    currentBet in betList
+    const totalBet = Object.values(tempBetList).reduce((a, b) => a + b, 0);
+    totalBet + toAdd >= score
+      ? currentBet in betList
+        ? (tempBetList[currentBet] = score - totalBet + tempBetList[currentBet])
+        : setBetValue(0)
+      : currentBet in betList
       ? (tempBetList[currentBet] = tempBetList[currentBet] + toAdd)
       : (tempBetList[currentBet] = toAdd);
     setBetList(tempBetList);
@@ -17,7 +22,7 @@ export default function RouletteBet({ betList, setBetList }) {
   function clearEntry() {
     var tempBetList = betList;
 
-    // fix
+    delete tempBetList[currentBet];
 
     setBetList(tempBetList);
   }
