@@ -1,4 +1,4 @@
-#blackjackGameContainer {
+#blackjack-game-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -6,11 +6,11 @@
   color: white;
   min-height: 50vh;
   font-family: "Arial", sans-serif;
-  padding: 150px;
-  gap: 0px;
+  padding: 10vh;
+  gap: 10px;
 }
 
-.Blackjack_button {
+.blackjack_button {
   padding: 20px 20px;
   background-color: #444;
   color: #f4f4f4;
@@ -23,7 +23,7 @@
   width: calc(100% - 20px);
 }
 
-#gameTable {
+#game-table {
   display: flex;
   flex-direction: column;
   background-color: #228b22;
@@ -37,7 +37,7 @@
   padding: 20px;
 }
 
-#cardArea {
+#card-area {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -47,20 +47,7 @@
   flex-wrap: wrap;
 }
 
-#gameResults {
-  display: flex;
-  flex-direction: column;
-  width: 20vw;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  background-color: #2c2c2c;
-  border-radius: 15px;
-  padding: 150px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-#gameTable img {
+#game-table img {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -69,14 +56,14 @@
   object-fit: contain;
 }
 
-#actionArea {
+#action-area {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
 }
 
-#actionArea button {
+#action-area button {
   background-color: #f0ad4e;
   color: white;
   border: none;
@@ -87,12 +74,12 @@
   transition: background-color 0.3s ease;
 }
 
-#actionArea button:hover {
+#action-area button:hover {
   background-color: #ec971f;
 }
 
-#playerHand,
-#dealerHand {
+#player-hand,
+#dealer-hand {
   display: flex;
   flex-direction: row;
   gap: 10px;

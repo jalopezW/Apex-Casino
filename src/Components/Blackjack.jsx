@@ -108,13 +108,13 @@ export default function Blackjack({ score, updateScore, user }) {
   }, [dealerScore]);
 
   return (
-    <div id="blackjackGameContainer">
+    <div id="blackjack-game-container">
       <GameHeader title="🃏 Blackjack 🃏" score={score} />
-      <div id="gameContent">
-        <div id="gameTable">
+      <div id="game-content">
+        <div id="game-table">
           {!betting && (
             <>
-              <div id="dealerCards">
+              <div id="dealer-cards">
                 {drawing ? (
                   <>
                     <img src={dealerCards[0]?.image} alt="Dealer card" />
@@ -129,13 +129,13 @@ export default function Blackjack({ score, updateScore, user }) {
                   ))
                 )}
               </div>
-              <div id="playerCards">
+              <div id="player-cards">
                 {playerCards.map((card) => (
                   <img key={card.code} src={card.image} alt={card.value} />
                 ))}
               </div>
               {drawing && (
-                <div id="actionArea">
+                <div id="action-area">
                   <button onClick={() => addCard("player")}>Hit</button>
                   <button onClick={() => dealerTurn()}>Stand</button>
                 </div>
@@ -163,14 +163,14 @@ export default function Blackjack({ score, updateScore, user }) {
               </h3>
             </div>
             {(lose || win || tie) && (
-              <button id="playAgainButton" onClick={() => reset()}>
+              <button id="play-again-button" onClick={() => reset()}>
                 Play Again
               </button>
             )}
           </div>
         )}
       </div>
-      <div id="bettingSection">
+      <div id="betting-section">
         {user &&
           (betting ? (
             <CardBetPlacer bet={setBet} flag={bettingFlag} score={score} />

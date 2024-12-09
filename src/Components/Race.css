@@ -24,11 +24,12 @@
   justify-self: center;
   color: black;
   border-radius: 20px;
+  grid-column: span 2;
 }
 
 #over-text {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 10px;
   font-size: 30px;
@@ -88,11 +89,6 @@
 
 #bet img {
   display: block;
-}
-
-#bet button {
-  color: white;
-  background-color: #1a1a1a;
 }
 
 #bet-on {

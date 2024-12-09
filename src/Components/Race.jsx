@@ -94,9 +94,6 @@ export default function Race({ score, updateScore, user }) {
 
       {over ? (
         <div id="over-text">
-          <button id="reset-button" onClick={reset}>
-            Play Again
-          </button>
           <p>{winner} wins!</p>
 
           {winner in betList ? (
@@ -104,6 +101,9 @@ export default function Race({ score, updateScore, user }) {
           ) : (
             <p>You lost ${Object.values(betList)[0].toLocaleString()}</p>
           )}
+          <button id="reset-button" onClick={reset}>
+            Play Again
+          </button>
         </div>
       ) : (
         Object.keys(betList).length > 0 && (

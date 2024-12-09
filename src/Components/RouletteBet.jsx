@@ -11,7 +11,7 @@ export default function RouletteBet({ betList, setBetList, score }) {
     totalBet + toAdd >= score
       ? currentBet in betList
         ? (tempBetList[currentBet] = score - totalBet + tempBetList[currentBet])
-        : (tempBetList[currentBet] = score)
+        : (tempBetList[currentBet] = score - totalBet)
       : currentBet in betList
       ? (tempBetList[currentBet] = tempBetList[currentBet] + toAdd)
       : (tempBetList[currentBet] = toAdd);

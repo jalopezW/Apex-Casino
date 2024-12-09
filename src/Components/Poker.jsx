@@ -182,95 +182,99 @@ export default function Poker({ score, updateScore, user }) {
   }, [round]);
 
   return (
-    <div id="everythingP">
+    <>
       <GameHeader title="💰 Poker 💰" score={score} />
-      <div id="game-table">
-        {round > 0 && (
-          <>
-            <div id="enemy-cards">
-              {!(round > 3) ? (
-                <>
-                  <img
-                    src="https://deckofcardsapi.com/static/img/back.png"
-                    alt="Face down card"
-                  />
-                  <img
-                    src="https://deckofcardsapi.com/static/img/back.png"
-                    alt="Face down card"
-                  />
-                </>
-              ) : (
-                botCards.map((card) => (
-                  <img key={card.code} src={card.image} alt={card.value} />
-                ))
-              )}
-            </div>
-            <div id="community-cards">
-              <img src={communityCards[0].image} />
-              <img src={communityCards[1].image} />
-              <img src={communityCards[2].image} />
-              <img
-                src={
-                  round > 1
-                    ? communityCards[3].image
-                    : "https://deckofcardsapi.com/static/img/back.png"
-                }
-              />
-              <img
-                src={
-                  round > 2
-                    ? communityCards[4].image
-                    : "https://deckofcardsapi.com/static/img/back.png"
-                }
-              />
-            </div>
-            <div id="player-cards">
-              {playerCards.map((card) => (
-                <img key={card.code} src={card.image} alt={card.value} />
-              ))}
-            </div>
-            {!betting && !(round > 3) && (
-              <div id="player-buttons">
-                <button
-                  onClick={() => {
-                    endGame(true);
-                  }}
-                >
-                  Fold
-                </button>
-                <button
-                  onClick={() => {
-                    setRound(round + 1);
-                  }}
-                >
-                  Check
-                </button>
-                <button
-                  onClick={() => {
-                    setBetting(true);
-                  }}
-                >
-                  Bet
-                </button>
+      <div id="everythingP">
+        <div id="game-table">
+          {round > 0 && (
+            <>
+              <div id="enemy-cards">
+                {!(round > 3) ? (
+                  <>
+                    <img
+                      src="https://deckofcardsapi.com/static/img/back.png"
+                      alt="Face down card"
+                    />
+                    <img
+                      src="https://deckofcardsapi.com/static/img/back.png"
+                      alt="Face down card"
+                    />
+                  </>
+                ) : (
+                  botCards.map((card) => (
+                    <img key={card.code} src={card.image} alt={card.value} />
+                  ))
+                )}
               </div>
-            )}
-            <p>Current Pot: ${(bet * 2).toLocaleString()}</p>
-          </>
+              <div id="community-cards">
+                <img src={communityCards[0].image} />
+                <img src={communityCards[1].image} />
+                <img src={communityCards[2].image} />
+                <img
+                  src={
+                    round > 1
+                      ? communityCards[3].image
+                      : "https://deckofcardsapi.com/static/img/back.png"
+                  }
+                />
+                <img
+                  src={
+                    round > 2
+                      ? communityCards[4].image
+                      : "https://deckofcardsapi.com/static/img/back.png"
+                  }
+                />
+              </div>
+              <div id="player-cards">
+                {playerCards.map((card) => (
+                  <img key={card.code} src={card.image} alt={card.value} />
+                ))}
+              </div>
+              {!betting && !(round > 3) && (
+                <div id="player-buttons">
+                  <button
+                    onClick={() => {
+                      endGame(true);
+                    }}
+                  >
+                    Fold
+                  </button>
+                  <button
+                    onClick={() => {
+                      setRound(round + 1);
+                    }}
+                  >
+                    Check
+                  </button>
+                  <button
+                    onClick={() => {
+                      setBetting(true);
+                    }}
+                  >
+                    Bet
+                  </button>
+                </div>
+              )}
+              <p>Current Pot: ${(bet * 2).toLocaleString()}</p>
+            </>
+          )}
+        </div>
+        {(round == 0 || betting) && user && (
+          <CardBetPlacer
+            bet={(newBet) =>
+              setBet(bet + newBet >= score ? score : bet + newBet)
+            }
+            flag={bettingFlag}
+            score={score}
+          />
+        )}
+        {round > 3 && (
+          <div id="results">
+            {win ? "You win" : "You lose"}: ${bet.toLocaleString()}
+            <button onClick={() => reset()}>Play Again</button>
+          </div>
         )}
       </div>
-      {(round == 0 || betting) && user && (
-        <CardBetPlacer
-          bet={(newBet) => setBet(bet + newBet >= score ? score : bet + newBet)}
-          flag={bettingFlag}
-          score={score}
-        />
-      )}
-      {round > 3 && (
-        <div id="results">
-          {win ? "You win" : "You lose"}: ${bet.toLocaleString()}
-          <button onClick={() => reset()}>Play Again</button>
-        </div>
-      )}
-    </div>
+    </>
   );
 }

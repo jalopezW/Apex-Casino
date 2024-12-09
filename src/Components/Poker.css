@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5vw;
+  padding: 5vh;
+  margin-top: 70vh;
 }
+
 #game-table {
   display: flex;
   flex-direction: column;
   background-color: #228b22;
-  border-radius: 355px;
+  border-radius: 300px;
   border: 10px solid #341c02;
   width: 80vw;
   align-items: center;
@@ -15,7 +19,6 @@
   min-height: 80vh;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   padding: 20px;
-  margin-top: 100px;
 }
 
 #enemy-cards img,
@@ -33,4 +36,10 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+#bet-output {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

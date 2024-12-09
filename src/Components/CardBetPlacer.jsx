@@ -66,7 +66,7 @@ export default function CardBetPlacer({ bet, flag, score }) {
         <p> $1,000 </p>
       </div>
 
-      <div id="betOutput">
+      <div id="bet-output">
         <p>Current Bet: ${tempBet.toLocaleString()}</p>
         <button onClick={() => settempBet(0)}>Clear</button>
         {tempBet != 0 ? (
