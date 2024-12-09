@@ -49,7 +49,7 @@ export default function Home({
                 <h2>Watch an Ad for 1,000 Lion Bucks!</h2>
                 <ReactPlayer
                   url="https://youtu.be/KT0U_JoxstU?si=kjD6wBt6iK2-HHhG"
-                  width="400px"
+                  width="375px"
                   height="250px"
                   onEnded={() => updateScore(1000)}
                 />
