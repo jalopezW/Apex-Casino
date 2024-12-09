@@ -101,7 +101,7 @@ export default function RaceBet({ betList, setBetList, score }) {
             <div> $500 </div>
             <div> $1,000 </div>
 
-            <div id="bet-on">
+            <div id="bet-output">
               Bet on {currentBet}: ${betValue.toLocaleString()}
               <button
                 onClick={() => {

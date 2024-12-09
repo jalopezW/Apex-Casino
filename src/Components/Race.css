@@ -91,7 +91,7 @@
   display: block;
 }
 
-#bet-on {
+#bet-output {
   display: flex;
   gap: 10px;
   grid-column: 1 / 7;
