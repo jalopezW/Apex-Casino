@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-export default function CrapsBet({ betList, setBetList }) {
-  const [currentBet, setCurrrentBet] = useState("");
+export default function CrapsBet({ betList, setBetList, score }) {
+  const [currentBet, setCurrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
   const [picked, setPicked] = useState(false);
 
@@ -30,7 +30,7 @@ export default function CrapsBet({ betList, setBetList }) {
     <div id="craps-bet">
       <div id="buttons">
         <button
-          onClick={() => setCurrrentBet(7)}
+          onClick={() => setCurrentBet(7)}
           className="full"
           id={
             picked ? (currentBet == 7 ? "selected" : "disabled ") : "selected"
@@ -41,7 +41,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>5 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(6)}
+          onClick={() => setCurrentBet(6)}
           className="half"
           id={
             picked ? (currentBet == 6 ? "selected" : "disabled ") : "selected"
@@ -54,7 +54,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>10 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(10)}
+          onClick={() => setCurrentBet(10)}
           className="half"
           id={
             picked ? (currentBet == 10 ? "selected" : "disabled ") : "selected"
@@ -67,7 +67,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>8 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(8)}
+          onClick={() => setCurrentBet(8)}
           className="half"
           id={
             picked ? (currentBet == 8 ? "selected" : "disabled ") : "selected"
@@ -80,7 +80,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>10 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(4)}
+          onClick={() => setCurrentBet(4)}
           className="half"
           id={
             picked ? (currentBet == 4 ? "selected" : "disabled ") : "selected"
@@ -93,7 +93,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>8 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(3)}
+          onClick={() => setCurrentBet(3)}
           className="third"
           id={
             picked ? (currentBet == 3 ? "selected" : "disabled ") : "selected"
@@ -106,7 +106,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>16 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(2)}
+          onClick={() => setCurrentBet(2)}
           className="third"
           id={
             picked ? (currentBet == 2 ? "selected" : "disabled ") : "selected"
@@ -119,7 +119,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>31 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(12)}
+          onClick={() => setCurrentBet(12)}
           className="third"
           id={
             picked ? (currentBet == 12 ? "selected" : "disabled ") : "selected"
@@ -132,7 +132,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>31 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(11)}
+          onClick={() => setCurrentBet(11)}
           className="half"
           id={
             picked ? (currentBet == 11 ? "selected" : "disabled ") : "selected"
@@ -145,7 +145,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>16 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet(11)}
+          onClick={() => setCurrentBet(11)}
           className="half"
           id={
             picked ? (currentBet == 11 ? "selected" : "disabled ") : "selected"
@@ -158,7 +158,7 @@ export default function CrapsBet({ betList, setBetList }) {
           <p>16 to 1</p>
         </button>
         <button
-          onClick={() => setCurrrentBet("Any")}
+          onClick={() => setCurrentBet("Any")}
           className="full"
           id={
             picked
@@ -223,12 +223,13 @@ export default function CrapsBet({ betList, setBetList }) {
             <p> $25 </p>
             <p> $100 </p>
             <p> $500 </p>
-            <p> $1000 </p>
+            <p> $1,000 </p>
           </div>
 
           <div id="betOutput">
             <p>
-              Bet on {currentBet}: ${currentBet in betList ? betValue : 0}
+              Bet on {currentBet}: $
+              {currentBet in betList ? betValue.toLocaleString() : 0}
             </p>
             <button
               onClick={() => {

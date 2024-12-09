@@ -57,27 +57,37 @@ export default function App() {
         />
         <Route
           path="/Blackjack"
-          element={<Blackjack score={score} updateScore={updateScore} />}
+          element={
+            <Blackjack score={score} updateScore={updateScore} user={user} />
+          }
         />
         <Route
           path="/Craps"
-          element={<Craps score={score} updateScore={updateScore} />}
+          element={
+            <Craps score={score} updateScore={updateScore} user={user} />
+          }
         />
         <Route
           path="/Poker"
-          element={<Poker score={score} updateScore={updateScore} />}
+          element={
+            <Poker score={score} updateScore={updateScore} user={user} />
+          }
         />
         <Route
           path="/Race"
-          element={<Race score={score} updateScore={updateScore} />}
+          element={<Race score={score} updateScore={updateScore} user={user} />}
         />
         <Route
           path="/Roulette"
-          element={<Roulette score={score} updateScore={updateScore} />}
+          element={
+            <Roulette score={score} updateScore={updateScore} user={user} />
+          }
         />
         <Route
           path="/Slots"
-          element={<Slots score={score} updateScore={updateScore} />}
+          element={
+            <Slots score={score} updateScore={updateScore} user={user} />
+          }
         />
         <Route path="/*" element={<NoPage />} />
       </Routes>

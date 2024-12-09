@@ -4,7 +4,7 @@ import { getDeck, getCard } from "../Services/cardService";
 import BetPlacer from "./BetPlacer";
 import "./Blackjack.css";
 
-export default function Blackjack({ score, updateScore }) {
+export default function Blackjack({ score, updateScore, user }) {
   const [betting, setBetting] = useState(true);
   const [bet, setBet] = useState(0);
   const [currentDeck, setCurrentDeck] = useState("");
@@ -177,17 +177,18 @@ export default function Blackjack({ score, updateScore }) {
         )}
       </div>
       <div id="bettingSection">
-        {betting ? (
-          <BetPlacer bet={setBet} flag={bettingFlag} score={score} />
-        ) : lose ? (
-          <p>You Lost ${bet}</p>
-        ) : win ? (
-          <p>You Win ${bet}</p>
-        ) : tie ? (
-          <p>Push!</p>
-        ) : (
-          <h2>Current Bet: ${bet}</h2>
-        )}
+        {user &&
+          (betting ? (
+            <BetPlacer bet={setBet} flag={bettingFlag} score={score} />
+          ) : lose ? (
+            <p>You Lost ${bet.toLocaleString()}</p>
+          ) : win ? (
+            <p>You Win ${bet.toLocaleString()}</p>
+          ) : tie ? (
+            <p>Push!</p>
+          ) : (
+            <h2>Current Bet: ${bet.toLocaleString()}</h2>
+          ))}
       </div>
     </div>
   );

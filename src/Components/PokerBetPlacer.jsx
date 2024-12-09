@@ -37,7 +37,7 @@ export default function BetPlacer({ bet, flag }) {
         <p> $25 </p>
         <p> $100 </p>
         <p> $500 </p>
-        <p> $1000 </p>
+        <p> $1,000 </p>
       </div>
 
       <div id="betOutput">

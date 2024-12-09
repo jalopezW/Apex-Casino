@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function RaceBet({ betList, setBetList, score }) {
-  const [currentBet, setCurrrentBet] = useState("");
+  const [currentBet, setCurrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
   const [picked, setPicked] = useState(false);
 
@@ -31,13 +31,13 @@ export default function RaceBet({ betList, setBetList, score }) {
         <div id="colors">
           <button
             id={picked ? (currentBet == "Red" ? "red" : "disabled ") : "red"}
-            onClick={() => setCurrrentBet("Red")}
+            onClick={() => setCurrentBet("Red")}
           >
             Red Rocket
           </button>
           <button
             id={picked ? (currentBet == "Blue" ? "blue" : "disabled ") : "blue"}
-            onClick={() => setCurrrentBet("Blue")}
+            onClick={() => setCurrentBet("Blue")}
           >
             Blue Lightning
           </button>
@@ -45,7 +45,7 @@ export default function RaceBet({ betList, setBetList, score }) {
             id={
               picked ? (currentBet == "Green" ? "green" : "disabled ") : "green"
             }
-            onClick={() => setCurrrentBet("Green")}
+            onClick={() => setCurrentBet("Green")}
           >
             Green Bean
           </button>
@@ -99,10 +99,10 @@ export default function RaceBet({ betList, setBetList, score }) {
             <div> $25 </div>
             <div> $100 </div>
             <div> $500 </div>
-            <div> $1000 </div>
+            <div> $1,000 </div>
 
             <div id="bet-on">
-              Bet on {currentBet}: ${betValue}
+              Bet on {currentBet}: ${betValue.toLocaleString()}
               <button
                 onClick={() => {
                   setBetList({}), setBetValue(0);

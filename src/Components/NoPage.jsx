@@ -4,9 +4,9 @@ export default function NoPage() {
   return (
     <>
       <h1>404</h1>
-      <button>
-        <Link to="/">Home</Link>
-      </button>
+      <Link to="/">
+        <button>Home</button>
+      </Link>
     </>
   );
 }

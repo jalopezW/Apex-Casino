@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import RaceBet from "./RaceBet";
 import "./Race.css";
 
-export default function Race({ score, updateScore }) {
+export default function Race({ score, updateScore, user }) {
   const horses = ["Red", "Blue", "Green"];
   const [isMoved, setIsMoved] = useState(false);
   const [winners, setWinners] = useState({});
@@ -32,7 +32,9 @@ export default function Race({ score, updateScore }) {
   function updateBet(newBet) {
     setBetList(newBet);
     setWrittenBet(
-      Object.keys(newBet).map((key) => `${key} = $${newBet[key]} `)
+      Object.keys(newBet).map(
+        (key) => `${key} = $${newBet[key].toLocaleString()} `
+      )
     );
   }
 
@@ -98,9 +100,9 @@ export default function Race({ score, updateScore }) {
           <p>{winner} wins!</p>
 
           {winner in betList ? (
-            <p>You win ${betList[winner]}</p>
+            <p>You win ${betList[winner].toLocaleString()}</p>
           ) : (
-            <p>You lost ${Object.values(betList)[0]}</p>
+            <p>You lost ${Object.values(betList)[0].toLocaleString()}</p>
           )}
         </div>
       ) : (
@@ -111,7 +113,9 @@ export default function Race({ score, updateScore }) {
         )
       )}
 
-      <RaceBet betList={betList} setBetList={updateBet} score={score} />
+      {user && !over && (
+        <RaceBet betList={betList} setBetList={updateBet} score={score} />
+      )}
     </>
   );
 }

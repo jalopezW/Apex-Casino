@@ -5,7 +5,7 @@ import "./Roulette.css";
 import { Wheel } from "react-custom-roulette";
 import { writeBatch } from "firebase/firestore";
 
-export default function Roulette({ score, updateScore }) {
+export default function Roulette({ score, updateScore, user }) {
   const possibilities = [
     { option: "0" },
     { option: "28" },
@@ -178,7 +178,9 @@ export default function Roulette({ score, updateScore }) {
   function updateBet(newBet) {
     setBetList(newBet);
     setWrittenBet(
-      Object.keys(newBet).map((key) => `${key} = $${newBet[key]} `)
+      Object.keys(newBet).map(
+        (key) => `${key} = $${newBet[key].toLocaleString()} `
+      )
     );
   }
 
@@ -216,14 +218,14 @@ export default function Roulette({ score, updateScore }) {
               <h3>Winners: {winners.join(", ")}</h3>
               <h3>
                 {resultScore > 0 ? "You won" : "You lost"}: $
-                {Math.abs(resultScore)}
+                {Math.abs(resultScore).toLocaleString()}
               </h3>
             </div>
           )}
           {writtenBet != "" && <h4>Current Bet(s): {writtenBet}</h4>}
         </div>
 
-        {!mustSpin && (
+        {user && !mustSpin && (
           <RouletteBet betList={betList} setBetList={updateBet} score={score} />
         )}
       </div>

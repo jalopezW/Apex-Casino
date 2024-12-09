@@ -2,7 +2,7 @@ import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import "./Slots.css";
 
-export default function Slots({ score, updateScore }) {
+export default function Slots({ score, updateScore, user }) {
   const scale_list = [2, 5, 10, 25, 50, 75, 100, 200, 500, 1000, 0];
   const [bet, setBet] = useState(0);
   const [betResult, setBetResult] = useState(0);
@@ -86,7 +86,7 @@ export default function Slots({ score, updateScore }) {
               />
             </div>
 
-            {spinOver ? (
+            {user && spinOver ? (
               <>
                 <div className="slots-bet">
                   <button
@@ -95,7 +95,7 @@ export default function Slots({ score, updateScore }) {
                   >
                     -
                   </button>
-                  <p>{bet}</p>
+                  <p>${bet.toLocaleString()}</p>
                   <button
                     className="slots-button"
                     onClick={() =>
@@ -123,7 +123,8 @@ export default function Slots({ score, updateScore }) {
 
             {spinOver && betResult != 0 ? (
               <p className="slots-result">
-                {spinWin ? "🤑 JACKPOT 🤑 YOU WIN" : "You lost"}: ${betResult}
+                {spinWin ? "🤑 JACKPOT 🤑 YOU WIN" : "You lost"}: $
+                {betResult.toLocaleString()}
               </p>
             ) : (
               <></>

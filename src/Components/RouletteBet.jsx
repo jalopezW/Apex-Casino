@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Roulette.css";
 
 export default function RouletteBet({ betList, setBetList, score }) {
-  const [currentBet, setCurrrentBet] = useState("");
+  const [currentBet, setCurrentBet] = useState("");
   const [betValue, setBetValue] = useState(0);
 
   function updateBet(toAdd) {
@@ -36,108 +36,108 @@ export default function RouletteBet({ betList, setBetList, score }) {
       <div className="table">
         <div className="top">
           <div className="zeros">
-            <button onClick={() => setCurrrentBet("0")} id="green">
+            <button onClick={() => setCurrentBet("0")} id="green">
               0
             </button>
-            <button onClick={() => setCurrrentBet("00")} id="green">
+            <button onClick={() => setCurrentBet("00")} id="green">
               00
             </button>
           </div>
 
           <div className="middle">
-            <button onClick={() => setCurrrentBet("1")} id="red">
+            <button onClick={() => setCurrentBet("1")} id="red">
               1
             </button>
-            <button onClick={() => setCurrrentBet("2")}>2</button>
-            <button onClick={() => setCurrrentBet("3")} id="red">
+            <button onClick={() => setCurrentBet("2")}>2</button>
+            <button onClick={() => setCurrentBet("3")} id="red">
               3
             </button>
-            <button onClick={() => setCurrrentBet("4")}>4</button>
-            <button onClick={() => setCurrrentBet("5")} id="red">
+            <button onClick={() => setCurrentBet("4")}>4</button>
+            <button onClick={() => setCurrentBet("5")} id="red">
               5
             </button>
-            <button onClick={() => setCurrrentBet("6")}>6</button>
-            <button onClick={() => setCurrrentBet("7")} id="red">
+            <button onClick={() => setCurrentBet("6")}>6</button>
+            <button onClick={() => setCurrentBet("7")} id="red">
               7
             </button>
-            <button onClick={() => setCurrrentBet("8")}>8</button>
-            <button onClick={() => setCurrrentBet("9")} id="red">
+            <button onClick={() => setCurrentBet("8")}>8</button>
+            <button onClick={() => setCurrentBet("9")} id="red">
               9
             </button>
-            <button onClick={() => setCurrrentBet("10")}>10</button>
-            <button onClick={() => setCurrrentBet("11")}>11</button>
-            <button onClick={() => setCurrrentBet("12")} id="red">
+            <button onClick={() => setCurrentBet("10")}>10</button>
+            <button onClick={() => setCurrentBet("11")}>11</button>
+            <button onClick={() => setCurrentBet("12")} id="red">
               12
             </button>
-            <button onClick={() => setCurrrentBet("13")}>13</button>
-            <button onClick={() => setCurrrentBet("14")} id="red">
+            <button onClick={() => setCurrentBet("13")}>13</button>
+            <button onClick={() => setCurrentBet("14")} id="red">
               14
             </button>
-            <button onClick={() => setCurrrentBet("15")}>15</button>
-            <button onClick={() => setCurrrentBet("16")} id="red">
+            <button onClick={() => setCurrentBet("15")}>15</button>
+            <button onClick={() => setCurrentBet("16")} id="red">
               16
             </button>
-            <button onClick={() => setCurrrentBet("17")}>17</button>
-            <button onClick={() => setCurrrentBet("18")} id="red">
+            <button onClick={() => setCurrentBet("17")}>17</button>
+            <button onClick={() => setCurrentBet("18")} id="red">
               18
             </button>
-            <button onClick={() => setCurrrentBet("19")} id="red">
+            <button onClick={() => setCurrentBet("19")} id="red">
               19
             </button>
-            <button onClick={() => setCurrrentBet("20")}>20</button>
-            <button onClick={() => setCurrrentBet("21")} id="red">
+            <button onClick={() => setCurrentBet("20")}>20</button>
+            <button onClick={() => setCurrentBet("21")} id="red">
               21
             </button>
-            <button onClick={() => setCurrrentBet("22")}>22</button>
-            <button onClick={() => setCurrrentBet("23")} id="red">
+            <button onClick={() => setCurrentBet("22")}>22</button>
+            <button onClick={() => setCurrentBet("23")} id="red">
               23
             </button>
-            <button onClick={() => setCurrrentBet("24")}>24</button>
-            <button onClick={() => setCurrrentBet("25")} id="red">
+            <button onClick={() => setCurrentBet("24")}>24</button>
+            <button onClick={() => setCurrentBet("25")} id="red">
               25
             </button>
-            <button onClick={() => setCurrrentBet("26")}>26</button>
-            <button onClick={() => setCurrrentBet("27")} id="red">
+            <button onClick={() => setCurrentBet("26")}>26</button>
+            <button onClick={() => setCurrentBet("27")} id="red">
               27
             </button>
-            <button onClick={() => setCurrrentBet("28")}>28</button>
-            <button onClick={() => setCurrrentBet("29")}>29</button>
-            <button onClick={() => setCurrrentBet("30")} id="red">
+            <button onClick={() => setCurrentBet("28")}>28</button>
+            <button onClick={() => setCurrentBet("29")}>29</button>
+            <button onClick={() => setCurrentBet("30")} id="red">
               30
             </button>
-            <button onClick={() => setCurrrentBet("31")}>31</button>
-            <button onClick={() => setCurrrentBet("32")} id="red">
+            <button onClick={() => setCurrentBet("31")}>31</button>
+            <button onClick={() => setCurrentBet("32")} id="red">
               32
             </button>
-            <button onClick={() => setCurrrentBet("33")}>33</button>
-            <button onClick={() => setCurrrentBet("34")} id="red">
+            <button onClick={() => setCurrentBet("33")}>33</button>
+            <button onClick={() => setCurrentBet("34")} id="red">
               34
             </button>
-            <button onClick={() => setCurrrentBet("35")}>35</button>
-            <button onClick={() => setCurrrentBet("36")} id="red">
+            <button onClick={() => setCurrentBet("35")}>35</button>
+            <button onClick={() => setCurrentBet("36")} id="red">
               36
             </button>
-            <button onClick={() => setCurrrentBet("1st col")}>2 - 1</button>
-            <button onClick={() => setCurrrentBet("2nd col")}>2 - 1</button>
-            <button onClick={() => setCurrrentBet("3rd col")}>2 - 1</button>
+            <button onClick={() => setCurrentBet("1st col")}>2 - 1</button>
+            <button onClick={() => setCurrentBet("2nd col")}>2 - 1</button>
+            <button onClick={() => setCurrentBet("3rd col")}>2 - 1</button>
           </div>
         </div>
 
         <div className="top_bottom">
-          <button onClick={() => setCurrrentBet("1st 12")}>1st 12</button>
-          <button onClick={() => setCurrrentBet("2nd 12")}>2nd 12</button>
-          <button onClick={() => setCurrrentBet("3rd 12")}>3rd 12</button>
+          <button onClick={() => setCurrentBet("1st 12")}>1st 12</button>
+          <button onClick={() => setCurrentBet("2nd 12")}>2nd 12</button>
+          <button onClick={() => setCurrentBet("3rd 12")}>3rd 12</button>
         </div>
 
         <div className="bottom_bottom">
-          <button onClick={() => setCurrrentBet("1 - 18")}>1 - 18</button>
-          <button onClick={() => setCurrrentBet("Even")}>Even</button>
-          <button onClick={() => setCurrrentBet("Red")} id="red">
+          <button onClick={() => setCurrentBet("1 - 18")}>1 - 18</button>
+          <button onClick={() => setCurrentBet("Even")}>Even</button>
+          <button onClick={() => setCurrentBet("Red")} id="red">
             Red
           </button>
-          <button onClick={() => setCurrrentBet("Black")}>Black</button>
-          <button onClick={() => setCurrrentBet("Odd")}>Odd</button>
-          <button onClick={() => setCurrrentBet("19 - 36")}>19 - 36</button>
+          <button onClick={() => setCurrentBet("Black")}>Black</button>
+          <button onClick={() => setCurrentBet("Odd")}>Odd</button>
+          <button onClick={() => setCurrentBet("19 - 36")}>19 - 36</button>
         </div>
       </div>
 
@@ -191,12 +191,12 @@ export default function RouletteBet({ betList, setBetList, score }) {
             <p> $25 </p>
             <p> $100 </p>
             <p> $500 </p>
-            <p> $1000 </p>
+            <p> $1,000 </p>
           </div>
 
           <div id="betOutput">
             <p>
-              Bet on {currentBet}: ${betValue}
+              Bet on {currentBet}: ${betValue.toLocaleString()}
             </p>
             <button onClick={() => clearEntry()}>Clear</button>
             <button onClick={() => setBetList({})}>Clear All</button>

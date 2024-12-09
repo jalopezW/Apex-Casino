@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import CrapsBet from "./CrapsBet";
 import "./Craps.css";
 
-export default function Craps({ score, updateScore }) {
+export default function Craps({ score, updateScore, user }) {
   const multipliers = [0, 0, 31, 16, 8, 0, 10, 5, 10, 0, 8, 16, 31];
   const [betList, setBetList] = useState({});
   const [writtenBet, setWrittenBet] = useState("");
@@ -31,7 +31,9 @@ export default function Craps({ score, updateScore }) {
   function updateBet(newBet) {
     setBetList(newBet);
     setWrittenBet(
-      Object.keys(newBet).map((key) => `${key} = $${newBet[key]} `)
+      Object.keys(newBet).map(
+        (key) => `${key} = $${newBet[key].toLocaleString()} `
+      )
     );
   }
 
@@ -94,18 +96,24 @@ export default function Craps({ score, updateScore }) {
 
                 <p>
                   {totalWinnings > 0 ? "You won" : "You lost"}: $
-                  {Math.abs(totalWinnings)}
+                  {Math.abs(totalWinnings).toLocaleString()}
                 </p>
               </>
             )}
           </div>
         </div>
         <div id="right">
-          {rolling ? (
-            <></>
-          ) : (
-            <CrapsBet betList={betList} setBetList={updateBet} id="craps-bet" />
-          )}
+          {user &&
+            (rolling ? (
+              <></>
+            ) : (
+              <CrapsBet
+                betList={betList}
+                setBetList={updateBet}
+                score={score}
+                id="craps-bet"
+              />
+            ))}
         </div>
       </div>
     </>
