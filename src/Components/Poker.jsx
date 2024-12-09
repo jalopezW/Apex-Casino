@@ -260,7 +260,7 @@ export default function Poker({ score, updateScore, user }) {
       </div>
       {(round == 0 || betting) && (
         <CardBetPlacer
-          bet={(newBet) => setBet(bet + newBet)}
+          bet={(newBet) => setBet(bet + newBet >= score ? score : bet + newBet)}
           flag={bettingFlag}
           score={score}
         />
