@@ -182,7 +182,7 @@ export default function Poker({ score, updateScore, user }) {
   }, [round]);
 
   return (
-    <>
+    <div id="everything">
       <GameHeader title="💰 Poker 💰" score={score} />
       <div id="game-table">
         {round > 0 && (
@@ -271,6 +271,6 @@ export default function Poker({ score, updateScore, user }) {
           <button onClick={() => reset()}>Play Again</button>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -226,7 +226,7 @@ export default function CrapsBet({ betList, setBetList, score }) {
             <p> $1,000 </p>
           </div>
 
-          <div id="betOutput">
+          <div id="bet-output">
             <p>
               Bet on {currentBet}: $
               {currentBet in betList ? betValue.toLocaleString() : 0}

@@ -70,26 +70,25 @@
 }
 
 .slots-result {
-  font-size: 20px; /* Slightly larger font for better readability */
-  margin-top: 20px; /* Increase spacing from other elements */
-  padding: 10px 20px; /* Add padding for a balanced look */
-  background-color: #444444; /* Subtle dark background for contrast */
-  color: #ffffff; /* White text for readability */
-  border: 2px solid #ffffff; /* Add a white border for emphasis */
-  border-radius: 10px; /* Rounded corners for a softer look */
-  /* Adjust width to fit content */
-  margin-left: auto; /* Center the element horizontally */
-  margin-right: auto; /* Center the element horizontally */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #444444;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .spin-button {
-  background-color: #777777; /* Slightly lighter background on hover */
+  background-color: #777777;
   transform: scale(1.1);
   margin-top: 20px;
   border-radius: 20px;
-  width: 150px; /* Set a larger width */
-  height: 50px; /* Set a larger height */
-  font-size: 18px; /* Increase font size for better readability */
-  padding: 10px 20px; /* Add padding to make it visually balanced */
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  padding: 10px 20px;
 }

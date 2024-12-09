@@ -5,6 +5,7 @@
   width: 100vw;
   height: 150vh;
   overflow-x: hidden;
+  overflow-y: scroll;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -19,7 +20,7 @@ header {
   justify-content: space-between;
   width: 98vw;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -31,7 +32,7 @@ header {
   padding: 0px;
 }
 
-#betOutput {
+#bet-output {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

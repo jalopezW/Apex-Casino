@@ -11,7 +11,7 @@ export default function Home({
   updateScore,
 }) {
   return (
-    <div className="container">
+    <div className="home-container">
       <div id="home-header">
         <img src="/images/Lion.png" width="75px" height="75px" />
         <h1>Apex Casino</h1>

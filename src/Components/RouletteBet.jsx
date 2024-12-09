@@ -194,7 +194,7 @@ export default function RouletteBet({ betList, setBetList, score }) {
             <p> $1,000 </p>
           </div>
 
-          <div id="betOutput">
+          <div id="bet-output">
             <p>
               Bet on {currentBet}: ${betValue.toLocaleString()}
             </p>
