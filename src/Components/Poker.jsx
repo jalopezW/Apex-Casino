@@ -8,7 +8,6 @@ export default function Poker({ score, updateScore, user }) {
   const [betting, setBetting] = useState(false);
   const [round, setRound] = useState(0);
   const [bet, setBet] = useState(0);
-  const [currentDeck, setCurrentDeck] = useState("");
   const [playerCards, setPlayerCards] = useState([]);
   const [botCards, setBotCards] = useState([]);
   const [communityCards, setCommunityCards] = useState([]);
@@ -35,7 +34,6 @@ export default function Poker({ score, updateScore, user }) {
     await getCard(deck).then((card) => (cCards = [...cCards, ...card]));
     await getCard(deck).then((card) => (cCards = [...cCards, ...card]));
     await getCard(deck).then((card) => (cCards = [...cCards, ...card]));
-    setCurrentDeck(deck);
     setPlayerCards(pCards);
     setBotCards(dCards);
     setCommunityCards(cCards);

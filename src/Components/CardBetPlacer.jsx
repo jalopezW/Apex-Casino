@@ -14,7 +14,7 @@ export default function CardBetPlacer({ bet, flag, score }) {
   }
 
   return (
-    <footer>
+    <div>
       <div id="bet">
         <img
           onClick={() => updateBet(1)}
@@ -75,6 +75,6 @@ export default function CardBetPlacer({ bet, flag, score }) {
           <></>
         )}
       </div>
-    </footer>
+    </div>
   );
 }

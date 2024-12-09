@@ -36,3 +36,14 @@ header {
   flex-direction: row;
   justify-content: space-around;
 }
+
+#sign-out,
+#sign-in {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+button {
+  background-color: #1a1a1a;
+}

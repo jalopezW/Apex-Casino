@@ -17,13 +17,7 @@ export default function GameHeader({ title, score }) {
 
         <div className="auth-actions">
           {!user ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "10px",
-              }}
-            >
+            <div id="sign-in">
               <p>Sign in to play!</p>
               <SignIn />
             </div>

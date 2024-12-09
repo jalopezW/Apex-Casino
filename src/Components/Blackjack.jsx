@@ -104,11 +104,7 @@ export default function Blackjack({ score, updateScore, user }) {
     playerScore > 21 ? endGame() : null;
   }, [playerScore]);
   useEffect(() => {
-    dealerScore >= 17 && !drawing
-      ? endGame()
-      : !drawing
-      ? addCard("dealer")
-      : null;
+    dealerScore >= 17 && !drawing ? endGame() : !drawing && addCard("dealer");
   }, [dealerScore]);
 
   return (
@@ -138,13 +134,11 @@ export default function Blackjack({ score, updateScore, user }) {
                   <img key={card.code} src={card.image} alt={card.value} />
                 ))}
               </div>
-              {drawing ? (
+              {drawing && (
                 <div id="actionArea">
                   <button onClick={() => addCard("player")}>Hit</button>
                   <button onClick={() => dealerTurn()}>Stand</button>
                 </div>
-              ) : (
-                <></>
               )}
             </>
           )}

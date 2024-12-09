@@ -113,25 +113,3 @@
   align-items: center;
   justify-content: center;
 }
-
-@media screen and (max-width: 768px) {
-  #gameTable {
-    width: 90vw;
-    height: auto;
-  }
-
-  #gameResults {
-    width: 80vw;
-  }
-
-  #actionArea button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-
-  #playerHand,
-  #dealerHand {
-    flex-direction: row;
-    gap: 5px;
-  }
-}

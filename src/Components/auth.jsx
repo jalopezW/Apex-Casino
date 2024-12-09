@@ -11,13 +11,7 @@ export function SignIn() {
 
 export function SignOut({ score }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        gap: "10px",
-      }}
-    >
+    <div id="sign-out">
       <p>
         {loggedInUserDisplayName()}: ${score.toLocaleString()}{" "}
       </p>
