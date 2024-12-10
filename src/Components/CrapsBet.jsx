@@ -176,47 +176,17 @@ export default function CrapsBet({ betList, setBetList, score }) {
       {currentBet && (
         <div id="bet-placer">
           <div id="bet">
-            <img
-              onClick={() => updateBet(1)}
-              src={"/images/White.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(1)} src={"/images/White.png"} />
 
-            <img
-              onClick={() => updateBet(5)}
-              src={"/images/Red.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(5)} src={"/images/Red.png"} />
 
-            <img
-              onClick={() => updateBet(25)}
-              src={"/images/Green.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(25)} src={"/images/Green.png"} />
 
-            <img
-              onClick={() => updateBet(100)}
-              src={"/images/Black.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(100)} src={"/images/Black.png"} />
 
-            <img
-              onClick={() => updateBet(500)}
-              src={"/images/Purple.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(500)} src={"/images/Purple.png"} />
 
-            <img
-              onClick={() => updateBet(1000)}
-              src={"/images/Orange.png"}
-              width={100}
-              height={100}
-            />
+            <img onClick={() => updateBet(1000)} src={"/images/Orange.png"} />
 
             <p> $1 </p>
             <p> $5 </p>

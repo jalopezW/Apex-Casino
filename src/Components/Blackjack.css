@@ -1,12 +1,11 @@
 #blackjack-game-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   color: white;
-  min-height: 50vh;
   font-family: "Arial", sans-serif;
-  padding: 10vh;
+  height: 100vh;
   gap: 10px;
 }
 
@@ -23,16 +22,16 @@
   width: calc(100% - 20px);
 }
 
-#game-table {
+#blackjack-game-table {
   display: flex;
   flex-direction: column;
   background-color: #228b22;
-  border-radius: 355px;
+  border-radius: 30vw;
   border: 10px solid #341c02;
   width: 80vw;
   align-items: center;
   justify-content: space-between;
-  height: 80vh;
+  height: calc(40vh + 40px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   padding: 20px;
 }
@@ -47,11 +46,12 @@
   flex-wrap: wrap;
 }
 
-#game-table img {
+#blackjack-game-table img {
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   width: auto;
+  height: 10vh;
   max-height: 250px;
   object-fit: contain;
 }
@@ -100,4 +100,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  #blackjack-game-table {
+    height: 80vh;
+  }
+
+  #blackjack-game-table img {
+    height: 250px;
+    width: auto;
+  }
 }

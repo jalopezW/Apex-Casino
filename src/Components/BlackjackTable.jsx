@@ -7,10 +7,10 @@ export default function BlackjackTable({
   dealerTurn,
 }) {
   return (
-    <div id="game-table">
+    <div id="blackjack-game-table">
       {!betting && (
         <>
-          <div id="dealer-cards">
+          <div id="dealer-hand">
             {drawing ? (
               <>
                 <img src={dealerCards[0]?.image} alt="Dealer card" />
@@ -25,7 +25,7 @@ export default function BlackjackTable({
               ))
             )}
           </div>
-          <div id="player-cards">
+          <div id="player-hand">
             {playerCards.map((card) => (
               <img key={card.code} src={card.image} alt={card.value} />
             ))}

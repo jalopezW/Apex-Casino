@@ -130,8 +130,13 @@
   }
 
   #bet {
-    grid-template-rows: 110px 40px 80px;
+    grid-template-rows: 100px 40px 80px;
   }
+
+  #bet p {
+    font-size: 20px;
+  }
+
   .betting-section {
     flex-direction: row;
   }
