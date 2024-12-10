@@ -3,16 +3,17 @@
   flex-direction: column;
   align-items: center;
   gap: 5vw;
-  padding: 5vh;
+  height: 100vh;
 }
 
 #game-table {
   display: flex;
   flex-direction: column;
   background-color: #228b22;
-  border-radius: 300px;
+  border-radius: 30vw;
   border: 10px solid #341c02;
   width: 80vw;
+  height: calc(40vh + 40px);
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -23,7 +24,7 @@
 #community-cards img,
 #player-cards img {
   width: auto;
-  max-height: 200px;
+  height: 7vh;
   object-fit: contain;
   padding: 10px;
 }
@@ -40,4 +41,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+@media screen and (min-width: 1000px) {
+  #game-table {
+    height: 80vh;
+  }
+
+  #game-table img {
+    height: 200px;
+    width: auto;
+  }
 }
