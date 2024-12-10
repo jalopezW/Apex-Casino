@@ -2,7 +2,7 @@ export async function getDeck() {
   return fetch(`https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1`)
     .then((response) => response.json())
     .then((data) => {
-      return data.deck_id;
+      return data ? data.deck_id : "error";
     });
 }
 
