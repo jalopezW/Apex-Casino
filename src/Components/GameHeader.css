@@ -1,49 +1,42 @@
-.casino-header {
+header {
   background-color: #1c1e26;
   color: #ffffff;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: calc(100vw - 40px);
 }
 
-.casino-header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.casino-header-title {
-  font-size: 1.8rem;
+h1 {
+  color: #ffcc00;
+  margin-bottom: 1rem;
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
   text-align: center;
   flex-grow: 1;
-  margin-left: 120px;
 }
 
-.nav-button {
+.home-button {
   background-color: #0077ff;
   color: white;
   border: none;
   padding: 10px 15px;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-right: 20px;
   text-decoration: none;
 }
 
-.nav-button a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-.nav-button:hover {
+.home-button:hover {
   background-color: #005bb5;
   transform: scale(1.05);
 }
@@ -59,7 +52,6 @@
   border: 2px solid #0077ff;
   padding: 8px 12px;
   border-radius: 5px;
-  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -67,4 +59,14 @@
 .auth-actions button:hover {
   background-color: #0077ff;
   color: white;
+}
+
+@media screen and (min-width: 800px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  .home-button {
+    font-size: 20px;
+  }
 }

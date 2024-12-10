@@ -3,10 +3,18 @@ import {
   logout,
   loggedInUserDisplayName,
 } from "../Services/authService.js";
-import "./App.css";
+import "./auth.css";
 
-export function SignIn() {
+export function SignInButton() {
   return <button onClick={login}>Sign In</button>;
+}
+export function SignIn() {
+  return (
+    <div id="sign-in">
+      <p>Sign in to play!</p>
+      <SignInButton />
+    </div>
+  );
 }
 
 export function SignOut({ score }) {

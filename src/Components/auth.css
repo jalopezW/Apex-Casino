@@ -1,0 +1,14 @@
+#sign-out,
+#sign-in {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-size: 10px;
+}
+
+@media screen and (min-width: 800px) {
+  #sign-out,
+  #sign-in {
+    font-size: 15px;
+  }
+}

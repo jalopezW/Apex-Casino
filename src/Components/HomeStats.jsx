@@ -1,4 +1,4 @@
-import { SignIn, SignOutButton } from "./auth";
+import { SignIn, SignInButton, SignOutButton } from "./auth";
 import ReactPlayer from "react-player";
 
 export default function HomeStats({ user, score, position, updateScore }) {
@@ -30,7 +30,7 @@ export default function HomeStats({ user, score, position, updateScore }) {
       ) : (
         <>
           <h2>Sign in to see your stats!</h2>
-          <SignIn />
+          <SignInButton />
         </>
       )}
     </div>
