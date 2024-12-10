@@ -2,6 +2,8 @@ import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import RaceBet from "./RaceBet";
 import "./Race.css";
+import RaceHorses from "./RaceHorses";
+import RaceAction from "./RaceAction";
 
 export default function Race({ score, updateScore, user }) {
   const horses = ["Red", "Blue", "Green"];
@@ -62,56 +64,19 @@ export default function Race({ score, updateScore, user }) {
   return (
     <>
       <GameHeader title="🐎 Race 🐎" score={score} />
-      <div id="horses">
-        <img
-          src="/images/redHorse.png"
-          width={"100px"}
-          height={"100px"}
-          style={{
-            transition: `transform ${placeToSeconds(winners["Red"])}s linear`,
-            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
-          }}
-        />
-        <img
-          src="/images/blueHorse.png"
-          width={"100px"}
-          height={"100px"}
-          style={{
-            transition: `transform ${placeToSeconds(winners["Blue"])}s linear`,
-            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
-          }}
-        />
-        <img
-          src="/images/greenHorse.png"
-          width={"100px"}
-          height={"100px"}
-          style={{
-            transition: `transform ${placeToSeconds(winners["Green"])}s linear`,
-            transform: isMoved ? "translateX(1000px)" : "translateX(0)",
-          }}
-        />
-      </div>
+      <RaceHorses
+        winners={winners}
+        placeToSeconds={placeToSeconds}
+        isMoved={isMoved}
+      />
 
-      {over ? (
-        <div id="over-text">
-          <p>{winner} wins!</p>
-
-          {winner in betList ? (
-            <p>You win ${betList[winner].toLocaleString()}</p>
-          ) : (
-            <p>You lost ${Object.values(betList)[0].toLocaleString()}</p>
-          )}
-          <button id="reset-button" onClick={reset}>
-            Play Again
-          </button>
-        </div>
-      ) : (
-        Object.keys(betList).length > 0 && (
-          <button id="race-button" onClick={getWinner}>
-            Race!
-          </button>
-        )
-      )}
+      <RaceAction
+        over={over}
+        winner={winner}
+        betList={betList}
+        reset={reset}
+        getWinner={getWinner}
+      />
 
       {user && !over && (
         <RaceBet betList={betList} setBetList={updateBet} score={score} />

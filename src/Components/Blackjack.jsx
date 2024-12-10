@@ -1,7 +1,9 @@
-import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import { getDeck, getCard } from "../Services/cardService";
-import CardBetPlacer from "./CardBetPlacer";
+import GameHeader from "./GameHeader";
+import BlackjackTable from "./BlackjackTable";
+import BlackjackResults from "./BlackjackResults";
+import BlackjackBet from "./BlackjackBet";
 import "./Blackjack.css";
 
 export default function Blackjack({ score, updateScore, user }) {
@@ -110,80 +112,37 @@ export default function Blackjack({ score, updateScore, user }) {
   return (
     <div id="blackjack-game-container">
       <GameHeader title="🃏 Blackjack 🃏" score={score} />
-      <div id="game-content">
-        <div id="game-table">
-          {!betting && (
-            <>
-              <div id="dealer-cards">
-                {drawing ? (
-                  <>
-                    <img src={dealerCards[0]?.image} alt="Dealer card" />
-                    <img
-                      src="https://deckofcardsapi.com/static/img/back.png"
-                      alt="Face down card"
-                    />
-                  </>
-                ) : (
-                  dealerCards.map((card) => (
-                    <img key={card.code} src={card.image} alt={card.value} />
-                  ))
-                )}
-              </div>
-              <div id="player-cards">
-                {playerCards.map((card) => (
-                  <img key={card.code} src={card.image} alt={card.value} />
-                ))}
-              </div>
-              {drawing && (
-                <div id="action-area">
-                  <button onClick={() => addCard("player")}>Hit</button>
-                  <button onClick={() => dealerTurn()}>Stand</button>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-        {!betting && (
-          <div id="results">
-            <div id="results-text">
-              <h3
-                style={{
-                  color: !drawing ? (lose ? "green" : "red") : "white",
-                }}
-              >
-                {drawing ? "???" : dealerScore}
-              </h3>
-              <h3>vs</h3>
-              <h3
-                style={{
-                  color: !drawing ? (win ? "green" : "red") : "white",
-                }}
-              >
-                {playerScore}
-              </h3>
-            </div>
-            {(lose || win || tie) && (
-              <button id="play-again-button" onClick={() => reset()}>
-                Play Again
-              </button>
-            )}
-          </div>
-        )}
-      </div>
-      <div id="betting-section">
-        {user &&
-          (betting ? (
-            <CardBetPlacer bet={setBet} flag={bettingFlag} score={score} />
-          ) : lose ? (
-            <p>You Lost ${bet.toLocaleString()}</p>
-          ) : win ? (
-            <p>You Win ${bet.toLocaleString()}</p>
-          ) : tie ? (
-            <p>Push!</p>
-          ) : (
-            <h2>Current Bet: ${bet.toLocaleString()}</h2>
-          ))}
-      </div>
+      <BlackjackTable
+        betting={betting}
+        drawing={drawing}
+        dealerCards={dealerCards}
+        playerCards={playerCards}
+        addCard={addCard}
+        dealerTurn={dealerTurn}
+      />
+      {!betting && (
+        <BlackjackResults
+          drawing={drawing}
+          lose={lose}
+          win={win}
+          tie={tie}
+          reset={reset}
+          dealerScore={dealerScore}
+          playerScore={playerScore}
+        />
+      )}
+      {user && (
+        <BlackjackBet
+          betting={betting}
+          lose={lose}
+          win={win}
+          tie={tie}
+          bet={bet}
+          setBet={setBet}
+          bettingFlag={bettingFlag}
+          score={score}
+        />
+      )}
     </div>
   );
 }

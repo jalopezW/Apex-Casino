@@ -1,6 +1,8 @@
-import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
+import GameHeader from "./GameHeader";
 import CrapsBet from "./CrapsBet";
+import CrapsDice from "./CrapsDice";
+import CrapsInfo from "./CrapsInfo";
 import "./Craps.css";
 
 export default function Craps({ score, updateScore, user }) {
@@ -67,53 +69,25 @@ export default function Craps({ score, updateScore, user }) {
       <GameHeader title="🎲 Craps 🎲" score={score} />
       <div id="everything">
         <div id="left">
-          <div id="dice">
-            <img
-              src={
-                rolling ? "/images/rolling.gif" : `/images/craps_${dice1}.png`
-              }
-              width={"200px"}
-              height={"200px"}
-            />
-            <img
-              src={
-                rolling ? "/images/rolling.gif" : `/images/craps_${dice2}.png`
-              }
-              width={"200px"}
-              height={"200px"}
-            />
-          </div>
-          <div id="info-area">
-            {Object.keys(betList).length > 0 && (
-              <>
-                {!rolling && <button onClick={roll}>Roll!</button>}
-                <p>Current Placed Bet: {writtenBet}</p>
-              </>
-            )}
-            {!rolling && totalWinnings != 0 && (
-              <>
-                <p>Last Roll: {result}</p>
-
-                <p>
-                  {totalWinnings > 0 ? "You won" : "You lost"}: $
-                  {Math.abs(totalWinnings).toLocaleString()}
-                </p>
-              </>
-            )}
-          </div>
+          <CrapsDice rolling={rolling} dice1={dice1} dice2={dice2} />
+          <CrapsInfo
+            betList={betList}
+            rolling={rolling}
+            roll={roll}
+            writtenBet={writtenBet}
+            totalWinnings={totalWinnings}
+            result={result}
+          />
         </div>
         <div id="right">
-          {user &&
-            (rolling ? (
-              <></>
-            ) : (
-              <CrapsBet
-                betList={betList}
-                setBetList={updateBet}
-                score={score}
-                id="craps-bet"
-              />
-            ))}
+          {user && !rolling && (
+            <CrapsBet
+              betList={betList}
+              setBetList={updateBet}
+              score={score}
+              id="craps-bet"
+            />
+          )}
         </div>
       </div>
     </>

@@ -1,7 +1,9 @@
-import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
 import { getDeck, getCard } from "../Services/cardService";
-import CardBetPlacer from "./CardBetPlacer";
+import GameHeader from "./GameHeader";
+import PokerTable from "./PokerTable";
+import PokerBet from "./PokerBet";
+import PokerResults from "./PokerResults";
 import "./Poker.css";
 
 export default function Poker({ score, updateScore, user }) {
@@ -185,95 +187,26 @@ export default function Poker({ score, updateScore, user }) {
     <>
       <GameHeader title="💰 Poker 💰" score={score} />
       <div id="poker-body">
-        <div id="game-table">
-          {round > 0 && (
-            <>
-              <div id="enemy-cards">
-                {!(round > 3) ? (
-                  <>
-                    <img
-                      src="https://deckofcardsapi.com/static/img/back.png"
-                      alt="Face down card"
-                    />
-                    <img
-                      src="https://deckofcardsapi.com/static/img/back.png"
-                      alt="Face down card"
-                    />
-                  </>
-                ) : (
-                  botCards.map((card) => (
-                    <img key={card.code} src={card.image} alt={card.value} />
-                  ))
-                )}
-              </div>
-              <div id="community-cards">
-                <img src={communityCards[0].image} />
-                <img src={communityCards[1].image} />
-                <img src={communityCards[2].image} />
-                <img
-                  src={
-                    round > 1
-                      ? communityCards[3].image
-                      : "https://deckofcardsapi.com/static/img/back.png"
-                  }
-                />
-                <img
-                  src={
-                    round > 2
-                      ? communityCards[4].image
-                      : "https://deckofcardsapi.com/static/img/back.png"
-                  }
-                />
-              </div>
-              <div id="player-cards">
-                {playerCards.map((card) => (
-                  <img key={card.code} src={card.image} alt={card.value} />
-                ))}
-              </div>
-              {!betting && !(round > 3) && (
-                <div id="player-buttons">
-                  <button
-                    onClick={() => {
-                      endGame(true);
-                    }}
-                  >
-                    Fold
-                  </button>
-                  <button
-                    onClick={() => {
-                      setRound(round + 1);
-                    }}
-                  >
-                    Check
-                  </button>
-                  <button
-                    onClick={() => {
-                      setBetting(true);
-                    }}
-                  >
-                    Bet
-                  </button>
-                </div>
-              )}
-              <p>Current Pot: ${(bet * 2).toLocaleString()}</p>
-            </>
-          )}
-        </div>
+        <PokerTable
+          round={round}
+          botCards={botCards}
+          communityCards={communityCards}
+          playerCards={playerCards}
+          betting={betting}
+          endGame={endGame}
+          setRound={setRound}
+          setBetting={setBetting}
+          bet={bet}
+        />
         {(round == 0 || betting) && user && (
-          <CardBetPlacer
-            bet={(newBet) =>
-              setBet(bet + newBet >= score ? score : bet + newBet)
-            }
-            flag={bettingFlag}
+          <PokerBet
+            bet={bet}
+            setBet={setBet}
             score={score}
+            bettingFlag={bettingFlag}
           />
         )}
-        {round > 3 && (
-          <div id="results">
-            {win ? "You win" : "You lose"}: ${bet.toLocaleString()}
-            <button onClick={() => reset()}>Play Again</button>
-          </div>
-        )}
+        {round > 3 && <PokerResults win={win} bet={bet} reset={reset} />}
       </div>
     </>
   );

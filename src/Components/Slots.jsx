@@ -1,5 +1,8 @@
-import GameHeader from "./GameHeader";
 import { useEffect, useState } from "react";
+import GameHeader from "./GameHeader";
+import SlotsOutput from "./SlotsOutput";
+import SlotsBet from "./SlotsBet";
+import SlotsResult from "./SlotsResult";
 import "./Slots.css";
 
 export default function Slots({ score, updateScore, user }) {
@@ -17,7 +20,7 @@ export default function Slots({ score, updateScore, user }) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async function spin() {
+  async function Spin() {
     setSpinOver(false);
     indSpin(20, setSlot1);
     indSpin(40, setSlot2);
@@ -68,66 +71,12 @@ export default function Slots({ score, updateScore, user }) {
         <div className="slots-root">
           <GameHeader title="🎰 Slots 🎰" score={score} />
           <div className="slots-container">
-            <div className="slot-images">
-              <img
-                src={`/images/slot_${slot1}.png`}
-                width={"50px"}
-                height={"50px"}
-              />
-              <img
-                src={`/images/slot_${slot2}.png`}
-                width={"50px"}
-                height={"50px"}
-              />
-              <img
-                src={`/images/slot_${slot3}.png`}
-                width={"50px"}
-                height={"50px"}
-              />
-            </div>
+            <SlotsOutput slot1={slot1} slot2={slot2} slot3={slot3} />
 
-            {user && spinOver ? (
-              <>
-                <div className="slots-bet">
-                  <button
-                    className="slots-button"
-                    onClick={() => (bet >= 10 ? setBet(bet - 10) : setBet(0))}
-                  >
-                    -
-                  </button>
-                  <p>${bet.toLocaleString()}</p>
-                  <button
-                    className="slots-button"
-                    onClick={() =>
-                      bet + 10 < score ? setBet(bet + 10) : setBet(score)
-                    }
-                  >
-                    +
-                  </button>
-                </div>
+            <SlotsBet user={user} spinOver={spinOver} bet={bet} Spin={Spin} />
 
-                {bet > 0 ? (
-                  <button
-                    className="slots-button spin-button"
-                    onClick={() => spin()}
-                  >
-                    Spin
-                  </button>
-                ) : (
-                  <> </>
-                )}
-              </>
-            ) : (
-              <></>
-            )}
-
-            {spinOver && betResult != 0 ? (
-              <p className="slots-result">
-                {spinWin ? "🤑 JACKPOT 🤑 YOU WIN" : "You lost"}: $
-                {betResult.toLocaleString()}
-              </p>
-            ) : (
-              <></>
+            {spinOver && betResult != 0 && (
+              <SlotsResult spinWin={spinWin} betResult={betResult} />
             )}
           </div>
         </div>

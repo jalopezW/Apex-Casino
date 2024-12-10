@@ -18,7 +18,7 @@ h1 {
   padding: 10px;
 }
 
-.home-container {
+.home {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ h1 {
   width: 100%;
 }
 
-.leaderboard {
+.home-leaderboard {
   background-color: #444;
   padding: 1rem;
   border-radius: 8px;
@@ -43,22 +43,23 @@ h1 {
   max-width: 50%;
 }
 
-.leaderboard h2 {
+.home-leaderboard h2 {
   margin: 0 0 0.5rem;
   color: #ffcc00;
 }
 
-.leaderboard ol {
+.home-leaderboard ol {
   list-style: none;
   padding: 0;
   margin: 0;
   text-align: left;
 }
 
-.leaderboard li {
+.home-leaderboard li {
   margin: 0.3rem 0;
 }
-.player-score {
+
+.home-stats {
   background-color: #444;
   padding: 1rem;
   border-radius: 8px;
@@ -66,16 +67,16 @@ h1 {
   max-width: 50%;
 }
 
-.player-score h2 {
+.home-stats h2 {
   margin: 0 0 0.5rem;
   color: #ffcc00;
 }
 
-.player-score p {
+.home-stats p {
   margin: 0.5rem 0;
 }
 
-.player-score button {
+.home-stats button {
   padding: 0.5rem 1rem;
   background-color: #ffcc00;
   border: none;
@@ -84,11 +85,11 @@ h1 {
   margin-top: 1rem;
 }
 
-.player-score button:hover {
+.home-stats button:hover {
   background-color: #e6b800;
 }
 
-.game-buttons {
+.home-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
@@ -96,7 +97,7 @@ h1 {
   margin-top: 1rem;
 }
 
-.game-buttons Link button {
+.home-buttons Link button {
   background-color: #444;
   color: #f4f4f4;
   padding: 0.5rem 1rem;
@@ -107,7 +108,7 @@ h1 {
   flex-direction: column;
 }
 
-.game-buttons Link button:hover {
+.home-buttons Link button:hover {
   background-color: #555;
 }
 
