@@ -116,7 +116,7 @@ export default function Roulette({ score, updateScore, user }) {
   const [writtenBet, setWrittenBet] = useState("");
   const [prizeIndex, setPrizeIndex] = useState(0);
 
-  function Spin() {
+  function spin() {
     const randomIndex = Math.floor(Math.random() * possibilities.length);
     setMustSpin(true);
     setPrizeIndex(randomIndex);
@@ -196,34 +196,32 @@ export default function Roulette({ score, updateScore, user }) {
   useEffect(() => getScore(), [winners]);
 
   return (
-    <div id="rbody">
+    <div id="roulette-body">
       <GameHeader title="🔴 Roulette ⚫" score={score} />
-      <div id="main">
-        <div className="roulette">
-          <Wheel
-            mustStartSpinning={mustSpin}
-            prizeNumber={prizeIndex}
-            data={possibilities}
-            backgroundColors={colors}
-            textColors={["white"]}
-            onStopSpinning={spinComplete}
-            fontSize={20}
-            perpendicularText={true}
-            textDistance={90}
-          />
-          <RouletteAction
-            writtenBet={writtenBet}
-            Spin={Spin}
-            spinValue={spinValue}
-            winners={winners}
-            resultScore={resultScore}
-          />
-        </div>
-
-        {user && !mustSpin && (
-          <RouletteBet betList={betList} setBetList={updateBet} score={score} />
-        )}
+      <div className="roulette">
+        <Wheel
+          mustStartSpinning={mustSpin}
+          prizeNumber={prizeIndex}
+          data={possibilities}
+          backgroundColors={colors}
+          textColors={["white"]}
+          onStopSpinning={spinComplete}
+          fontSize={20}
+          perpendicularText={true}
+          textDistance={90}
+        />
+        <RouletteAction
+          writtenBet={writtenBet}
+          Spin={spin}
+          spinValue={spinValue}
+          winners={winners}
+          resultScore={resultScore}
+        />
       </div>
+
+      {user && !mustSpin && (
+        <RouletteBet betList={betList} setBetList={updateBet} score={score} />
+      )}
     </div>
   );
 }

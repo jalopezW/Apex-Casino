@@ -1,13 +1,15 @@
 export default function RouletteAction({
   writtenBet,
-  Spin,
+  spin,
   spinValue,
   winners,
   resultScore,
 }) {
   return (
     <>
-      {writtenBet != "" && <button onClick={() => Spin()}>Spin</button>}
+      {writtenBet != "" && (
+        <button onClick={() => console.log("lo")}>Spin</button>
+      )}
       {spinValue != "37" && (
         <div className="winners-display">
           <h2>Spin Result: {spinValue}</h2>

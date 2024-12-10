@@ -1,15 +1,11 @@
-#main {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  gap: 100px;
-  padding: 1vh;
-}
-
-#rbody {
+#roulette-body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  padding: 1vh;
+  width: calc(98vw);
 }
 
 #roulette-bet {
@@ -17,42 +13,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 7px;
 }
 
 .top {
   transform: rotate(-90deg) translateX(-100%);
   transform-origin: top left;
   position: relative;
-  top: -125px;
-}
-.zeros {
-  display: grid;
-  grid-template-columns: 120px 120px;
-}
-.middle {
-  display: grid;
-  grid-template-columns: 80px 80px 80px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-.top_bottom {
-  position: relative;
-  top: -166px;
-  margin-left: 40px;
-  display: grid;
-  grid-template-columns: 156px 156px 156px;
-}
-.bottom_bottom {
-  position: relative;
-  top: -166px;
-  margin-left: 40px;
-  display: grid;
-  grid-template-columns: 78px 78px 78px 78px 78px 78px;
+  top: -250px;
+  left: -10px;
 }
 
-.better {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.zeros {
+  display: grid;
+  grid-template-columns: 45px 45px;
+}
+
+.middle {
+  display: grid;
+  grid-template-columns: 30px 30px 30px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.top_bottom {
+  position: relative;
+  top: -287px;
+  margin-left: 8px;
+  display: grid;
+  grid-template-columns: 104px 104px 104px;
+}
+
+.bottom_bottom {
+  position: relative;
+  top: -287px;
+  margin-left: 8px;
+  display: grid;
+  grid-template-columns: 52px 52px 52px 52px 52px 52px;
+}
+
+#roulette-bet #bet {
+  position: relative;
+  top: -250px;
 }
 
 .roulette {
@@ -60,7 +61,7 @@
   flex-direction: column;
 }
 
-.Roulette button {
+.roulette button {
   background-color: #007bff;
   color: white;
   padding: 15px 30px;
@@ -71,7 +72,8 @@
   margin-top: 10px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.Roulette button:hover {
+
+.roulette button:hover {
   background-color: #0056b3;
   transform: scale(1.1);
 }
@@ -128,4 +130,44 @@ h4 {
 
 .table button {
   background-color: black;
+}
+
+@media screen and (min-width: 900px) {
+  #roulette-body {
+    flex-direction: row;
+    gap: 100px;
+  }
+
+  #roulette-bet {
+    font-size: 16px;
+  }
+
+  .top {
+    top: -125px;
+  }
+
+  .zeros {
+    grid-template-columns: 120px 120px;
+  }
+
+  .middle {
+    grid-template-columns: 80px 80px 80px;
+  }
+
+  .top_bottom {
+    top: -176px;
+    margin-left: 30px;
+    grid-template-columns: 156px 156px 156px;
+  }
+
+  .bottom_bottom {
+    top: -176px;
+    margin-left: 30px;
+    grid-template-columns: 78px 78px 78px 78px 78px 78px;
+  }
+
+  #roulette-bet #bet {
+    position: relative;
+    top: -100px;
+  }
 }
