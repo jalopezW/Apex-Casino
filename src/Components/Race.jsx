@@ -62,7 +62,7 @@ export default function Race({ score, updateScore, user }) {
   }, [over]);
 
   return (
-    <>
+    <div className="race">
       <GameHeader title="🐎 Race 🐎" score={score} />
       <RaceHorses
         winners={winners}
@@ -81,6 +81,6 @@ export default function Race({ score, updateScore, user }) {
       {user && !over && (
         <RaceBet betList={betList} setBetList={updateBet} score={score} />
       )}
-    </>
+    </div>
   );
 }

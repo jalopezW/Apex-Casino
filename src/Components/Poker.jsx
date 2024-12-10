@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getDeck, getCard } from "../Services/cardService";
 import GameHeader from "./GameHeader";
 import PokerTable from "./PokerTable";
-import PokerBet from "./PokerBet";
+import CardBetPlacer from "./CardBetPlacer";
 import PokerResults from "./PokerResults";
 import "./Poker.css";
 
@@ -199,11 +199,12 @@ export default function Poker({ score, updateScore, user }) {
           bet={bet}
         />
         {(round == 0 || betting) && user && (
-          <PokerBet
-            bet={bet}
-            setBet={setBet}
+          <CardBetPlacer
+            bet={(newBet) =>
+              setBet(bet + newBet >= score ? score : bet + newBet)
+            }
+            flag={bettingFlag}
             score={score}
-            bettingFlag={bettingFlag}
           />
         )}
         {round > 3 && <PokerResults win={win} bet={bet} reset={reset} />}
