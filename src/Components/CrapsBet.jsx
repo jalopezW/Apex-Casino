@@ -224,20 +224,20 @@ export default function CrapsBet({ betList, setBetList, score }) {
             <p> $100 </p>
             <p> $500 </p>
             <p> $1,000 </p>
-          </div>
 
-          <div id="bet-output">
-            <p>
-              Bet on {currentBet}: $
-              {currentBet in betList ? betValue.toLocaleString() : 0}
-            </p>
-            <button
-              onClick={() => {
-                setBetList({}), setBetValue(0);
-              }}
-            >
-              Clear
-            </button>
+            <div id="bet-output">
+              <p>
+                Bet on {currentBet}: $
+                {currentBet in betList ? betValue.toLocaleString() : 0}
+              </p>
+              <button
+                onClick={() => {
+                  setBetList({}), setBetValue(0);
+                }}
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </div>
       )}

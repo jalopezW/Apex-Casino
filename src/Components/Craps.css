@@ -1,19 +1,33 @@
-#everything {
-  display: flex;
-  flex-direction: row;
-  gap: 5vw;
-}
-
-#left {
+#craps {
   display: flex;
   flex-direction: column;
-  gap: 10vh;
+  justify-content: center;
+  width: 100vw;
+  gap: 5vh;
+}
+
+#craps-not-bet {
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
 }
 
 #craps-bet {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 5vw;
+}
+
+#dice {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+#dice img {
+  width: 100px;
+  height: 100px;
 }
 
 #buttons {
@@ -30,9 +44,11 @@
   justify-content: center;
   align-items: center;
 }
+
 .half {
   grid-column: span 3;
 }
+
 .third {
   grid-column: span 2;
 }
@@ -40,7 +56,7 @@
 #buttons button {
   border-radius: 0;
   border: 2px solid white;
-  font-size: 20px;
+  font-size: 10px;
 }
 
 #selected {
@@ -71,12 +87,88 @@
 
 #info-area button {
   grid-row: span 3;
-  font-size: 50px;
+  font-size: 20px;
 }
 
 #info-area p {
   grid-column: span 1;
-  font-size: 20px;
+  font-size: 10px;
   text-wrap: wrap;
   max-width: 20vw;
+}
+
+#bet-placer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#bet img {
+  height: 10vw;
+  width: 10vw;
+  display: block;
+}
+
+#bet p {
+  font-size: 10px;
+}
+
+#bet {
+  width: auto;
+  color: white;
+  font-size: 20px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 11vw 40px 80px;
+  padding: 8px;
+  gap: 4px;
+}
+
+#bet-output {
+  display: flex;
+  gap: 10px;
+  grid-column: 1 / 7;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media screen and (min-width: 1000px) {
+  #craps {
+    flex-direction: row;
+  }
+
+  #craps-bet {
+    flex-direction: row;
+  }
+
+  #bet {
+    grid-template-rows: 80px 40px 80px;
+  }
+
+  #bet img {
+    height: 75px;
+    width: 75px;
+  }
+
+  #craps-bet p,
+  #info-area p {
+    font-size: 20px;
+  }
+
+  #info-area button {
+    font-size: 50px;
+  }
+
+  #dice img {
+    width: 150px;
+    height: 150px;
+  }
+
+  #buttons {
+    min-width: 20vw;
+  }
 }

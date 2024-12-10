@@ -65,31 +65,30 @@ export default function Craps({ score, updateScore, user }) {
   }, [result]);
 
   return (
-    <>
+    <div id="craps">
       <GameHeader title="🎲 Craps 🎲" score={score} />
-      <div id="everything">
-        <div id="left">
-          <CrapsDice rolling={rolling} dice1={dice1} dice2={dice2} />
-          <CrapsInfo
-            betList={betList}
-            rolling={rolling}
-            roll={roll}
-            writtenBet={writtenBet}
-            totalWinnings={totalWinnings}
-            result={result}
-          />
-        </div>
-        <div id="right">
-          {user && !rolling && (
-            <CrapsBet
-              betList={betList}
-              setBetList={updateBet}
-              score={score}
-              id="craps-bet"
-            />
-          )}
-        </div>
+
+      <div id="craps-not-bet">
+        <CrapsDice rolling={rolling} dice1={dice1} dice2={dice2} />
+
+        <CrapsInfo
+          betList={betList}
+          rolling={rolling}
+          roll={roll}
+          writtenBet={writtenBet}
+          totalWinnings={totalWinnings}
+          result={result}
+        />
       </div>
-    </>
+
+      {user && !rolling && (
+        <CrapsBet
+          betList={betList}
+          setBetList={updateBet}
+          score={score}
+          id="craps-bet"
+        />
+      )}
+    </div>
   );
 }
