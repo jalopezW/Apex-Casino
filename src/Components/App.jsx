@@ -51,6 +51,7 @@ export default function App() {
               user={user}
               leaderboard={leaderboard}
               position={position}
+              updateScore={updateScore}
             />
           }
         />
