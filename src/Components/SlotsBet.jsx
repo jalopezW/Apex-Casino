@@ -1,4 +1,4 @@
-export default function SlotsBet({ user, spinOver, bet, Spin }) {
+export default function SlotsBet({ user, spinOver, bet, Spin, score, setBet }) {
   return (
     <>
       {user && spinOver && (
@@ -22,7 +22,7 @@ export default function SlotsBet({ user, spinOver, bet, Spin }) {
           </div>
 
           {bet > 0 && (
-            <button className="slots-button spin-button" onClick={() => Spin()}>
+            <button className="spin-button" onClick={() => Spin()}>
               Spin
             </button>
           )}

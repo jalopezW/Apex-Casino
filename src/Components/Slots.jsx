@@ -67,18 +67,23 @@ export default function Slots({ score, updateScore, user }) {
 
   return (
     <>
-      <div className="slots-body">
-        <div className="slots-root">
-          <GameHeader title="🎰 Slots 🎰" score={score} />
-          <div className="slots-container">
-            <SlotsOutput slot1={slot1} slot2={slot2} slot3={slot3} />
+      <div className="slots">
+        <GameHeader title="🎰 Slots 🎰" score={score} />
+        <div className="slot-machine">
+          <SlotsOutput slot1={slot1} slot2={slot2} slot3={slot3} />
 
-            <SlotsBet user={user} spinOver={spinOver} bet={bet} Spin={Spin} />
+          <SlotsBet
+            user={user}
+            spinOver={spinOver}
+            bet={bet}
+            Spin={Spin}
+            score={score}
+            setBet={setBet}
+          />
 
-            {spinOver && betResult != 0 && (
-              <SlotsResult spinWin={spinWin} betResult={betResult} />
-            )}
-          </div>
+          {spinOver && betResult != 0 && (
+            <SlotsResult spinWin={spinWin} betResult={betResult} />
+          )}
         </div>
       </div>
     </>

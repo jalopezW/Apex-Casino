@@ -1,27 +1,21 @@
-.slots-body {
+.slots {
   color: white;
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  height: 100vh;
   margin: 0;
+  width: 100vw;
+  height: 80vh;
 }
 
-.slots-root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.slots-container {
+.slot-machine {
   background-color: #666666;
   border-radius: 10px;
-  padding: 100px;
+  padding: 10vw;
   text-align: center;
-  width: 800px;
+  width: 70vw;
   border-color: white;
   height: 50vh;
 }
@@ -63,10 +57,10 @@
 
 .slot-images img {
   margin: 5px;
-  border: 20px solid #ffffff;
-  border-radius: 20px;
-  width: 200px;
-  height: 200px;
+  border: 2vw solid #ffffff;
+  border-radius: 2vw;
+  width: 20vw;
+  height: 20vw;
 }
 
 .slots-result {
@@ -91,4 +85,17 @@
   height: 50px;
   font-size: 18px;
   padding: 10px 20px;
+}
+
+@media screen and (min-width: 1200px) {
+  .slot-images img {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .slot-machine {
+    width: 40vw;
+    height: 40vh;
+    padding: 7.5vw 7.5vw 10vw 7.5vw;
+  }
 }
