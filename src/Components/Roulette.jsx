@@ -193,7 +193,9 @@ export default function Roulette({ score, updateScore, user }) {
     spinValue != "37" && getWinners();
   }, [spinValue]);
 
-  useEffect(() => getScore(), [winners]);
+  useEffect(() => {
+    spinValue != "37" && getScore();
+  }, [winners]);
 
   return (
     <div id="roulette-body">
@@ -212,7 +214,7 @@ export default function Roulette({ score, updateScore, user }) {
         />
         <RouletteAction
           writtenBet={writtenBet}
-          Spin={spin}
+          spin={spin}
           spinValue={spinValue}
           winners={winners}
           resultScore={resultScore}

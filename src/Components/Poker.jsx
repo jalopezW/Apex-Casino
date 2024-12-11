@@ -172,7 +172,6 @@ export default function Poker({ score, updateScore, user }) {
     setBetting(false);
     setRound(0);
     setBet(0);
-    setCurrentDeck("");
     setPlayerCards([]);
     setBotCards([]);
     setCommunityCards([]);

@@ -12,6 +12,10 @@
   padding-top: 90px;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 #bet {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -23,10 +27,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-#bet-output button {
-  background-color: gray;
 }
 
 button {

@@ -40,13 +40,14 @@ export default function Blackjack({ score, updateScore, user }) {
   }
 
   async function addCard(whom) {
-    whom === "player"
-      ? await getCard(currentDeck).then((card) =>
-          setPlayerCards([...playerCards, ...card])
-        )
-      : await getCard(currentDeck).then((card) =>
-          setDealerCards([...dealerCards, ...card])
-        );
+    !betting &&
+      (whom === "player"
+        ? await getCard(currentDeck).then((card) =>
+            setPlayerCards([...playerCards, ...card])
+          )
+        : await getCard(currentDeck).then((card) =>
+            setDealerCards([...dealerCards, ...card])
+          ));
   }
 
   function dealerTurn() {

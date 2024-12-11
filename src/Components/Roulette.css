@@ -5,7 +5,7 @@
   align-items: center;
   gap: 5vh;
   padding: 1vh;
-  width: calc(98vw);
+  width: 98vw;
 }
 
 #roulette-bet {
@@ -81,7 +81,7 @@
 .winners-display {
   background-color: #333;
   color: white;
-  padding: 20px;
+  padding: 5px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-top: 20px;

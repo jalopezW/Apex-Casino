@@ -48,7 +48,6 @@ export default function Race({ score, updateScore, user }) {
     setOver(false);
     setIsMoved(!isMoved);
     setBetList({});
-    setWrittenBet(0);
   }
 
   function endGame() {
