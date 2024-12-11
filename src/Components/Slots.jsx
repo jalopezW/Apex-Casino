@@ -57,7 +57,7 @@ export default function Slots({ score, updateScore, user }) {
   }
 
   useEffect(() => {
-    betResult != 0 && checkSpin();
+    bet != 0 && checkSpin();
   }, [result]);
   useEffect(() => {
     spinOver ? setResult([slot1, slot2, slot3]) : null;
