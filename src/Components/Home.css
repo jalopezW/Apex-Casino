@@ -109,7 +109,7 @@
 }
 
 .video {
-  width: 90vw !important;
+  width: 80vw !important;
   height: 30vh !important;
 }
 
@@ -148,5 +148,10 @@
 
   .home-buttons p {
     font-size: 20px;
+  }
+
+  .video {
+    width: 15vw !important;
+    height: auto !important;
   }
 }
